@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#9e542a</color>
+    <color name="colorPrimaryDark">#efa25a</color>
+    <color name="colorAccent">#f5eed6</color>
+
+    <color name="colorPrimaryGreen">#16a085</color>
+    <color name="colorPrimaryDarkGreen">#1abc9c</color>
+    <color name="colorAccentGreen">#16a085</color>
+
+    <color name="colorPrimaryRed">#c0392b</color>
+    <color name="colorPrimaryDarkRed">#e74c3c</color>
+    <color name="colorAccentRed">#c0392b</color>
+
+    <color name="colorPrimaryViolete">#8e44ad</color>
+    <color name="colorPrimaryDarkViolete">#9b59b6</color>
+    <color name="colorAccentViolete">#8e44ad</color>
+
+    <color name="ic_pending_todos_title_color">#707070</color>
+    <color name="ic_completed_todos_title_color">#707070</color>
+    <color name="ic_tags_available_color">#707070</color>
+</resources>
