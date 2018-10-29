@@ -9,10 +9,6 @@ import com.example.Beemish.HerosJournal.models.TagsModel;
 
 import java.util.ArrayList;
 
-/**
- * Created by Beemish on 12/29/17.
- */
-
 public class TagDBHelper{
     private Context context;
     private DatabaseHelper databaseHelper;

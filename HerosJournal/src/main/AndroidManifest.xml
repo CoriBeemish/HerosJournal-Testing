@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.Beemish.HerosJournal">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".activities.RealmInitApplication"
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
@@ -12,12 +15,17 @@
         <activity
             android:name="com.example.Beemish.HerosJournal.activities.MainActivity"
             android:label="@string/app_name">
+        </activity>
+
+        <activity android:name=".activities.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".activities.RegisterActivity"></activity>
 
         <activity
             android:name="com.example.Beemish.HerosJournal.activities.CompletedTodos"

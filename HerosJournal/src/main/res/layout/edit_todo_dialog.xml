@@ -188,7 +188,7 @@
                         android:drawablePadding="@dimen/drawable_input_padding"
                         android:hint="@string/todo_date_hint"
                         android:padding="@dimen/input_padding"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -204,7 +204,7 @@
                         android:drawablePadding="@dimen/drawable_input_padding"
                         android:hint="@string/todo_time_hint"
                         android:padding="@dimen/input_padding"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
