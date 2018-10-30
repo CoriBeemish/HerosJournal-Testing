@@ -1,5 +1,7 @@
 package com.example.Beemish.HerosJournal.activities;
 
+//Written by Alex Helfrich
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
