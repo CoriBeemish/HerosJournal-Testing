@@ -1,5 +1,7 @@
 package com.example.Beemish.HerosJournal.activities;
 
+// Written by Alex Helfrich
+
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
