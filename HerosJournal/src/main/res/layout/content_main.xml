@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.Beemish.HerosJournal.com.example.asifkhan.HerosJournal.activities.MainActivity">
+    tools:context="com.example.Beemish.HerosJournal.activities.MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/panelhighavatar" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/pending_todos_view"
@@ -41,11 +50,164 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabAddTodo"
-        android:src="@drawable/ic__add_new_todo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/imageView2"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/floating_button_add_todo_margin"
+        android:layout_marginStart="@dimen/floating_button_add_todo_margin"
+        android:layout_marginLeft="@dimen/floating_button_add_todo_margin"
+        android:layout_marginTop="@dimen/floating_button_add_todo_margin"
+        android:layout_marginEnd="@dimen/floating_button_add_todo_margin"
+        android:layout_marginBottom="160dp"
+        android:src="@drawable/ic__add_new_todo" />
+
+    <TableLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="false"
+        android:layout_marginLeft="@dimen/status_bars_table_margin_left"
+        android:layout_marginBottom="@dimen/status_bars_table_margin_botton">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/stat_table_margin"
+            android:gravity="center_vertical|center_horizontal|center">
+
+            <TextView
+                android:id="@+id/healthLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/healthLabel"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <ProgressBar
+                android:id="@+id/healthProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="100dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="@dimen/stat_progress_bar_margin_left"
+                android:progressDrawable="@android:color/holo_green_light" />
+
+            <TextView
+                android:id="@+id/healthStats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/stat_progress_numbers_margin_left"
+                android:gravity="center_vertical|center"
+                android:text="@string/health_number_demo" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/stat_row_margin"
+            android:gravity="center_vertical|center_horizontal|center">
+
+            <TextView
+                android:id="@+id/manaLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/manaLabel"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <ProgressBar
+                android:id="@+id/manaProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="100dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="@dimen/stat_progress_bar_margin_left"
+                android:progressDrawable="@android:color/holo_blue_dark" />
+
+            <TextView
+                android:id="@+id/manaStats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/stat_progress_numbers_margin_left"
+                android:gravity="center_vertical|center"
+                android:text="@string/mana_number_demo" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/stat_row_margin"
+            android:gravity="center_vertical|center_horizontal|center">
+
+            <TextView
+                android:id="@+id/expLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/expLabel"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <ProgressBar
+                android:id="@+id/expProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="100dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="@dimen/stat_progress_bar_margin_left"
+                android:progressDrawable="@android:color/holo_orange_light" />
+
+            <TextView
+                android:id="@+id/expStats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/stat_progress_numbers_margin_left"
+                android:gravity="center_vertical|center"
+                android:text="@string/exp_number_demo" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/levelLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/levelLabel"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/levelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="1"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+    </TableLayout>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="142dp"
+        android:layout_height="152dp"
+        android:layout_alignTop="@+id/imageView3"
+        android:layout_alignParentStart="true"
+        app:srcCompat="@drawable/avatar" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="152dp"
+        android:layout_height="161dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/borderavatar" />
 
 </RelativeLayout>

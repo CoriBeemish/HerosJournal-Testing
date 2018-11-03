@@ -6,6 +6,14 @@
     <dimen name="no_completed_todo_title_size">16dp</dimen>
     <dimen name="floating_button_add_todo_margin">20dp</dimen>
 
+    <dimen name="stat_row_margin">2dp</dimen>
+    <dimen name="stat_table_margin">2dp</dimen>
+    <dimen name="stat_progress_bar_margin_left">10dp</dimen>
+    <dimen name="stat_progress_numbers_margin_left">2dp</dimen>
+
+    <dimen name="status_bars_table_margin_left">160dp</dimen>
+    <dimen name="status_bars_table_margin_botton">20dp</dimen>
+
     <dimen name="pending_card_view_margin_top">2dp</dimen>
     <dimen name="pending_card_view_margin_bottom">1dp</dimen>
     <dimen name="pending_card_view_margin_left">10dp</dimen>

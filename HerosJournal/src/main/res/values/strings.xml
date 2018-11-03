@@ -7,6 +7,15 @@
     <string name="all_tags_title">Attributes</string>
     <string name="settings_title">App Settings</string>
 
+    <string name="healthLabel">Health</string>
+    <string name="manaLabel">Mana</string>
+    <string name="expLabel">EXP</string>
+    <string name="levelLabel">Level:</string>
+
+    <string name="health_number_demo"> 75/100 </string>
+    <string name="mana_number_demo"> 100/100 </string>
+    <string name="exp_number_demo"> 10/100 </string>
+
     <string name="nav_pending_todos_text">Pending Activities</string>
     <string name="nav_completed_todos_text">Completed Activities</string>
     <string name="nav_tags_text">Attributes</string>
