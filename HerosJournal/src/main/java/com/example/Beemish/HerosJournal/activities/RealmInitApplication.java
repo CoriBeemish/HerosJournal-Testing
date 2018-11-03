@@ -1,5 +1,7 @@
 package com.example.Beemish.HerosJournal.activities;
 
+//Written by Alex Helfrich
+
 import android.app.Application;
 import android.util.Log;
 
