@@ -37,6 +37,10 @@
             android:name="com.example.Beemish.HerosJournal.activities.AppSettings"
             android:parentActivityName="com.example.Beemish.HerosJournal.activities.MainActivity">
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

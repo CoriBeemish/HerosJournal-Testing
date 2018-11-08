@@ -19,4 +19,6 @@
     <color name="ic_pending_todos_title_color">#707070</color>
     <color name="ic_completed_todos_title_color">#707070</color>
     <color name="ic_tags_available_color">#707070</color>
+    <color name="fontColorPanel">#8e553c</color>
+    <color name="redFlag">#ab3233</color>
 </resources>
