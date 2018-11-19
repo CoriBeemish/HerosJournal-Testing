@@ -34,8 +34,9 @@ import com.example.Beemish.HerosJournal.models.PendingTodoModel;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 
-public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.PendingDataHolder>{
+public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.PendingDataHolder>  {
     private ArrayList<PendingTodoModel> pendingTodoModels;
     private Context context;
     private String getTagTitleString;
@@ -80,6 +81,12 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
                                 return true;
                             case R.id.delete:
                                 showDeleteDialog(pendingTodoModel.getTodoID());
+                                return true;
+                            case R.id.moveUp:
+                                moveTodoUp(pendingTodoModel.getTodoID());
+                                return true;
+                            case R.id.moveDown:
+                                moveTodoDown(pendingTodoModel.getTodoID());
                                 return true;
                             default:
                                 return false;
@@ -286,4 +293,13 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
         pendingTodoModels.addAll(newPendingTodoModels);
         notifyDataSetChanged();
     }
+
+    //MOVE TASK UP AND DOWN
+    private void moveTodoUp(final int tagID){
+
+    }
+    private void moveTodoDown(final int tagID){
+
+    }
+
 }

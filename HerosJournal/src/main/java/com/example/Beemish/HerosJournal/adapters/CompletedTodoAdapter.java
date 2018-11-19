@@ -14,6 +14,7 @@ import com.example.Beemish.HerosJournal.helpers.TodoDBHelper;
 import com.example.Beemish.HerosJournal.models.CompletedTodoModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Beemish on 12/27/17.
@@ -28,6 +29,7 @@ public class CompletedTodoAdapter extends RecyclerView.Adapter<CompletedTodoAdap
         this.completedTodoModels = completedTodoModels;
         this.context = context;
     }
+
 
     @Override
     public CompletedTodoAdapter.CompletedDataHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -71,4 +73,6 @@ public class CompletedTodoAdapter extends RecyclerView.Adapter<CompletedTodoAdap
         completedTodoModels.addAll(newCompletedTodoModels);
         notifyDataSetChanged();
     }
+
+
 }

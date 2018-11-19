@@ -31,19 +31,20 @@
 
         <ImageView
             android:id="@+id/completed_todos_icon"
-            android:src="@drawable/ic_completed_todo_icon"
+            android:layout_width="165dp"
+            android:layout_height="98dp"
             android:layout_gravity="center"
             android:layout_margin="@dimen/completed_todo_icon_margin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:src="@drawable/no_completed_todos3" />
 
         <TextView
             android:id="@+id/no_completed_todo_title"
-            android:text="@string/no_completed_todo_text"
-            android:layout_gravity="center"
-            android:textSize="@dimen/no_completed_todo_title_size"
-            android:textColor="@color/ic_completed_todos_title_color"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/play_bold"
+            android:text="@string/no_completed_todo_text"
+            android:textColor="@color/PaperColorFont"
+            android:textSize="@dimen/no_completed_todo_title_size" />
     </LinearLayout>
 </RelativeLayout>

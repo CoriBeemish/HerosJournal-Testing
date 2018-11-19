@@ -21,4 +21,8 @@
     <color name="ic_tags_available_color">#707070</color>
     <color name="fontColorPanel">#8e553c</color>
     <color name="redFlag">#ab3233</color>
+    <color name="no_tagsfont">#9aacb7</color>
+    <color name="inkcolor">#222035</color>
+    <color name="paperColor">#fdebda</color>
+    <color name="PaperColorFont">#dfd1c4</color>
 </resources>

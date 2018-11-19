@@ -18,6 +18,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         showDrawerLayout(); // Custom drawer
         navigationMenuInit();
         loadPendingTodos();
+
     }
 
     //loading all the pending activities
@@ -96,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.fabAddTodo:
-                if(tagDBHelper.countTags() < 10){ // Weird fanegaling done by cori to get the right dialog to open
+                if(tagDBHelper.countTags() >= 1){ // Weird fanegaling done by cori to get the right dialog to open
                     showDialog();
                 }else{
                     showNewTodoDialog();
@@ -104,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
     }
+
 
     // Adds extra functionality when the back button is pressed
     @Override
@@ -209,21 +212,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //show dialog if there is no tag in the database
     // This shouldn't show at all unless you're on the tag page itself
     private void showNewTodoDialog(){
-        AlertDialog.Builder builder=new AlertDialog.Builder(this);
-        builder.setTitle(R.string.tag_create_dialog_title_text);
-        builder.setMessage(R.string.no_tag_in_the_db_text);
-        builder.setPositiveButton(R.string.create_new_tag, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                startActivity(new Intent(MainActivity.this,AllTags.class));
-            }
-        }).setNegativeButton(R.string.tag_edit_cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            builder.setTitle(R.string.tag_create_dialog_title_text);
+            builder.setMessage(R.string.no_tag_in_the_db_text);
+            builder.setPositiveButton(R.string.create_new_tag, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    startActivity(new Intent(MainActivity.this,AllTags.class));
+                }
+            }).setNegativeButton(R.string.tag_edit_cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
 
-            }
-        }).create().show();
+                }
+            }).create().show();
     }
+
+
 
     //show add new todos dialog and adding the todos into the database
     private void showDialog(){
@@ -247,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final TextInputEditText todoContent=(TextInputEditText)view.findViewById(R.id.todo_content);
 
         // ATTRIBUTE SPINNER
-        Spinner todoTags=(Spinner)view.findViewById(R.id.todo_tag);
+        final Spinner todoTags=(Spinner)view.findViewById(R.id.todo_tag);
         // Stores all the tags title in string format
         ArrayAdapter<String> tagsModelArrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, tagDBHelper.fetchTagStrings());
         // Setting dropdown view resouce for spinner
@@ -258,6 +263,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 getTagTitleString = adapterView.getItemAtPosition(i).toString();
+
             }
 
             @Override

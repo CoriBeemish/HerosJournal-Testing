@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Debug;
+import android.util.Log;
 
 import com.example.Beemish.HerosJournal.models.TagsModel;
 
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 public class TagDBHelper{
     private Context context;
     private DatabaseHelper databaseHelper;
+    private SQLiteDatabase sqLiteDatabase;
 
     public TagDBHelper(Context context){
         this.context=context;
@@ -41,7 +44,11 @@ public class TagDBHelper{
         SQLiteDatabase sqLiteDatabase=this.databaseHelper.getReadableDatabase();
         String query="SELECT " + DatabaseHelper.COL_TAG_ID + " FROM " + DatabaseHelper.TABLE_TAG_NAME;
         Cursor cursor=sqLiteDatabase.rawQuery(query,null);
-        return cursor.getCount();
+        int count = cursor.getCount();
+        cursor.close();
+        String s = Integer.toString(count);
+        Log.w("COUNT", s);
+        return count;
     }
 
     //fetch all the tags from the database
@@ -115,11 +122,19 @@ public class TagDBHelper{
 
     //fetch tag id from the database according to the tag title
     public int fetchTagID(String tagTitle){
-        SQLiteDatabase sqLiteDatabase=this.databaseHelper.getReadableDatabase();
-        String fetchTitle="SELECT " + DatabaseHelper.COL_TAG_ID + " FROM " + DatabaseHelper.TABLE_TAG_NAME
-                + " WHERE " + DatabaseHelper.COL_TAG_TITLE+"=?";
-        Cursor cursor=sqLiteDatabase.rawQuery(fetchTitle,new String[]{tagTitle});
-        cursor.moveToFirst();
-        return cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_TAG_ID));
+        //check for illegal argument [Augi - 11/11/2018 edit]
+        if(tagTitle != null){
+            SQLiteDatabase sqLiteDatabase=this.databaseHelper.getReadableDatabase();
+            String fetchTitle="SELECT " + DatabaseHelper.COL_TAG_ID + " FROM " + DatabaseHelper.TABLE_TAG_NAME
+                    + " WHERE " + DatabaseHelper.COL_TAG_TITLE+"=?";
+            Cursor cursor=sqLiteDatabase.rawQuery(fetchTitle,new String[]{tagTitle});
+            cursor.moveToFirst();
+            return cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_TAG_ID));
+        }
+        //returns 0 if there are no tags [Augi - 11/11/2018 edit ]
+        else{
+            return 0;
+        }
+
     }
 }

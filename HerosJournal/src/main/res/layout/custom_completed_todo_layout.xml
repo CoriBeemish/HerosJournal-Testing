@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -13,6 +14,13 @@
         android:layout_marginBottom="@dimen/completed_card_view_margin_bottom"
         android:elevation="@dimen/completed_card_view_elevation">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/cardview_panel" />
+
         <RelativeLayout
             android:id="@+id/each_completed_todo_section"
             android:layout_width="match_parent"
@@ -22,21 +30,24 @@
                 android:id="@+id/completed_todo_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/completed_todo_title_left_margin"
-                android:layout_marginTop="@dimen/completed_todo_title_top_margin"
-                android:layout_marginRight="@dimen/completed_todo_title_right_margin"
-                android:layout_marginBottom="@dimen/completed_todo_title_bottom_margin"
+                android:layout_marginBottom="@dimen/pending_todo_title_bottom_margin"
+                android:layout_marginLeft="8sp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/completed_todo_demo_title"
-                android:textSize="@dimen/completed_todo_title_text_size" />
+                android:textColor="@color/redFlag"
+                android:textSize="@dimen/completed_todo_title_text_size"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/completed_todo_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/completed_todo_title"
-                android:layout_marginLeft="@dimen/completed_todo_content_left_margin"
-                android:layout_marginRight="@dimen/completed_todo_content_right_margin"
-                android:layout_marginBottom="@dimen/completed_todo_content_bottom_margin"
+                android:layout_marginBottom="@dimen/pending_todo_content_bottom_margin"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/completed_todo_demo_content"
                 android:textSize="@dimen/completed_todo_content_text_size" />
 
@@ -44,9 +55,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/completed_todo_content"
-                android:layout_marginLeft="@dimen/completed_todo_info_section_margin_left"
-                android:layout_marginRight="@dimen/completed_todo_info_section_margin_right"
-                android:layout_marginBottom="@dimen/completed_todo_info_section_bottom_margin"
+                android:layout_marginBottom="@dimen/pending_todo_info_section_bottom_margin"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal">
 
                 <TextView
