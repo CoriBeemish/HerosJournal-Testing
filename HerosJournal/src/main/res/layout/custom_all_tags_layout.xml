@@ -13,39 +13,40 @@
         android:elevation="@dimen/tag_card_view_elevation">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/tagPanel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/cardview_panel" />
+            app:srcCompat="@drawable/tag_panel_light3" />
 
         <RelativeLayout
             android:id="@+id/each_tag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/tags_option"
+                android:layout_width="73dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:padding="12dp"
+                app:srcCompat="@drawable/tag_optionsl3" />
+
             <TextView
                 android:id="@+id/tag_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/tag_title_bottom_margin"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="11dp"
+                android:fontFamily="@font/press_start_2p"
+                android:padding="20dp"
                 android:text="@string/todo_info_demo_tag_text"
-                android:textColor="@color/redFlag"
-                android:textSize="@dimen/tag_title_text_size"
+                android:textColor="@color/no_tagsfont"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/tags_option"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/tag_option_icon_margin_right"
-                android:layout_marginTop="@dimen/tag_option_icon_margin_top"
-                android:src="@drawable/ic_tags_options"
-                tools:visibility="gone" />
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
