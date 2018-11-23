@@ -128,9 +128,9 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.TagDataHolder> {
                 boolean tagExists=tagDBHelper.tagExists(getTagTitle);
 
                 if(isTagEmpty){
-                    tagEditTitle.setError("Tag title required !");
+                    tagEditTitle.setError("Attribute title required !");
                 }else if(tagExists){
-                    tagEditTitle.setError("Tag title already exists!");
+                    tagEditTitle.setError("Attribute title already exists!");
                 }else if(tagDBHelper.saveTag(new TagsModel(tagID,getTagTitle))){
                     Toast.makeText(context, R.string.tag_saved_success, Toast.LENGTH_SHORT).show();
                     context.startActivity(new Intent(context, AllTags.class));

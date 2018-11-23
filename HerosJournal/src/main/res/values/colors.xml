@@ -25,4 +25,6 @@
     <color name="inkcolor">#222035</color>
     <color name="paperColor">#fdebda</color>
     <color name="PaperColorFont">#dfd1c4</color>
+    <color name="darkBrownFont">#382f2e</color>
+    <color name="mainBGColor">#685a59</color>
 </resources>

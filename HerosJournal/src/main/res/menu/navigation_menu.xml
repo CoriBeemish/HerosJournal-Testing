@@ -6,15 +6,16 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/pending_todos"
-            android:icon="@drawable/ic_format_list_bulleted"
-            android:title="@string/nav_pending_todos_text" />
+            android:icon="@drawable/cardview_options"
+            android:title="@string/nav_pending_todos_text"
+            />
         <item
             android:id="@+id/completed_todos"
-            android:icon="@drawable/ic_playlist_add_check"
+            android:icon="@drawable/cardview_complete"
             android:title="@string/nav_completed_todos_text" />
         <item
             android:id="@+id/tags"
-            android:icon="@drawable/ic_event_note"
+            android:icon="@drawable/ic_apps"
             android:title="@string/nav_tags_text" />
         <item
             android:id="@+id/settings"

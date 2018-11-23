@@ -26,4 +26,8 @@
         <item name="colorAccent">@color/colorAccentViolete</item>
     </style>
 
+    <style name="PlayBoldTextStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/play_bold</item>
+    </style>
+
 </resources>

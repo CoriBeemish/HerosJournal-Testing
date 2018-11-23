@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.Beemish.HerosJournal.com.example.asifkhan.HerosJournal.activities.AllTags">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/login_bg3" />
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
@@ -19,11 +26,12 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/viewAllTags"
         android:layout_width="match_parent"
-        android:layout_height="517dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="50dp"
-        android:layout_alignParentLeft="true" />
+        android:layout_marginBottom="100dp"
+        android:layout_marginTop="60dp"/>
 
     <LinearLayout
         android:id="@+id/no_tags_available"
@@ -64,5 +72,5 @@
         android:layout_marginEnd="27dp"
         android:layout_marginRight="27dp"
         android:src="@drawable/ic__add_new_todo"
-        app:backgroundTint="@color/inkcolor" />
+        app:backgroundTint="@color/redFlag" />
 </RelativeLayout>

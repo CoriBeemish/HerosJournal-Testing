@@ -34,8 +34,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
+            android:background="@drawable/drawer_layout_bg3"
             android:fitsSystemWindows="false"
-            app:menu="@menu/navigation_menu" />
+            app:itemIconTint="@color/colorAccentRed"
+            app:itemTextAppearance="@style/PlayBoldTextStyle"
+            app:itemTextColor="@color/fontColorPanel"
+            app:menu="@menu/navigation_menu">
+
+        </android.support.design.widget.NavigationView>
 
     </android.support.v4.widget.DrawerLayout>
 </RelativeLayout>

@@ -7,6 +7,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/todo_dialogue_bg"
         android:orientation="vertical">
 
         <TextView
@@ -31,12 +32,14 @@
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/todo_title"
-                    android:drawableLeft="@drawable/ic_add_new_todo_title"
-                    android:drawablePadding="@dimen/drawable_input_padding"
-                    android:padding="@dimen/input_padding"
-                    android:hint="@string/todo_title_hint"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/todo_title"
+                    android:drawablePadding="@dimen/drawable_input_padding"
+                    android:fontFamily="@font/play_bold"
+                    android:hint="@string/todo_title_hint"
+                    android:padding="@dimen/input_padding"
+                    android:textColor="@color/darkBrownFont" />
 
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
@@ -45,12 +48,14 @@
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/todo_content"
-                    android:drawableLeft="@drawable/ic_add_new_todo_content"
-                    android:drawablePadding="@dimen/drawable_input_padding"
-                    android:padding="@dimen/input_padding"
-                    android:hint="@string/todo_content_hint"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/todo_descr"
+                    android:drawablePadding="@dimen/drawable_input_padding"
+                    android:fontFamily="@font/play_bold"
+                    android:hint="@string/todo_content_hint"
+                    android:padding="@dimen/input_padding"
+                    android:textColor="@color/darkBrownFont" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -160,9 +165,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
+                    android:fontFamily="@font/play_bold"
                     android:gravity="center_vertical|center_horizontal|center"
                     android:text="Repeats: "
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/fontColorPanel"
                     android:textSize="18sp" />
 
                 <Spinner
@@ -191,8 +197,10 @@
                         android:layout_height="50dp"
                         android:drawableLeft="@drawable/ic_add_new_todo_date"
                         android:drawablePadding="@dimen/drawable_input_padding"
+                        android:fontFamily="@font/play_bold"
                         android:hint="@string/todo_date_hint"
                         android:padding="@dimen/input_padding"
+                        android:textColor="@color/darkBrownFont"
                         android:textSize="12sp" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -207,8 +215,10 @@
                         android:layout_height="50dp"
                         android:drawableLeft="@drawable/ic_add_new_todo_date"
                         android:drawablePadding="@dimen/drawable_input_padding"
+                        android:fontFamily="@font/play_bold"
                         android:hint="@string/todo_time_hint"
                         android:padding="@dimen/input_padding"
+                        android:textColor="@color/darkBrownFont"
                         android:textSize="12sp" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -224,18 +234,20 @@
 
                 <TextView
                     android:id="@+id/cancel"
-                    android:text="@string/add_todo_dialog_cancel_text"
-                    android:textColor="@color/colorPrimary"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/play_bold"
+                    android:text="@string/add_todo_dialog_cancel_text"
+                    android:textColor="@color/colorPrimary" />
 
                 <TextView
                     android:id="@+id/add_new_todo"
-                    android:layout_marginLeft="@dimen/todo_dialog_add_margin_left"
-                    android:text="@string/add_todo_dialog_title"
-                    android:textColor="@color/colorPrimary"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/todo_dialog_add_margin_left"
+                    android:fontFamily="@font/play_bold"
+                    android:text="@string/add_todo_dialog_title"
+                    android:textColor="@color/colorPrimary" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

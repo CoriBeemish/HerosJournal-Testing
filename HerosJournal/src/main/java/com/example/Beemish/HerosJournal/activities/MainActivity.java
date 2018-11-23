@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -19,9 +20,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -68,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         showDrawerLayout(); // Custom drawer
         navigationMenuInit();
         loadPendingTodos();
+
 
     }
 
@@ -354,4 +359,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
         builder.create().show();
     }
+
 }

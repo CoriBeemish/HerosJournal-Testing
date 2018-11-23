@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/cardview_panel" />
+            app:srcCompat="@drawable/todo_panel" />
 
         <RelativeLayout
             android:id="@+id/each_pending_todo_section"
@@ -30,12 +30,12 @@
                 android:id="@+id/pending_todo_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/pending_todo_title_bottom_margin"
-                android:layout_marginLeft="8sp"
-                android:layout_marginRight="8dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/play_bold"
                 android:text="@string/pending_todo_demo_title"
-                android:textColor="@color/redFlag"
+                android:textColor="@color/darkBrownFont"
                 android:textSize="@dimen/pending_todo_title_text_size"
                 android:textStyle="bold" />
 
@@ -44,18 +44,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pending_todo_title"
-                android:layout_marginBottom="@dimen/pending_todo_content_bottom_margin"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/play_bold"
                 android:text="@string/pending_todo_demo_content"
+                android:textColor="@color/fontColorPanel"
                 android:textSize="@dimen/pending_todo_content_text_size" />
 
             <LinearLayout
                 android:layout_width="79dp"
                 android:layout_height="37dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="8dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal">
 
@@ -80,24 +81,28 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pending_todo_content"
                 android:layout_marginBottom="@dimen/pending_todo_info_section_bottom_margin"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="16dp">
 
                 <TextView
                     android:id="@+id/todo_tag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/todo_info_section_text_size"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/play_bold"
                     android:text="@string/todo_info_demo_tag_text"
+                    android:textColor="@color/fontColorPanel"
                     android:textSize="@dimen/todo_info_section_text_size" />
 
                 <TextView
                     android:id="@+id/todo_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/play_bold"
                     android:text="@string/todo_info_demo_time_from_text"
+                    android:textColor="@color/fontColorPanel"
                     android:textSize="@dimen/todo_info_section_text_size" />
 
                 <TextView
@@ -106,7 +111,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="24dp"
                     android:layout_marginRight="@dimen/todo_info_section_margin_right"
+                    android:fontFamily="@font/play_bold"
                     android:text="@string/todo_info_demo_date_text"
+                    android:textColor="@color/fontColorPanel"
                     android:textSize="@dimen/todo_info_section_text_size" />
 
             </LinearLayout>
