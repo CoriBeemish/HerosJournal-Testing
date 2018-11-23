@@ -6,11 +6,14 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -23,7 +26,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.Beemish.HerosJournal.ItemTouchHelperAdapter;
+import com.example.Beemish.HerosJournal.ItemTouchHelperViewHolder;
 import com.example.Beemish.HerosJournal.R;
+import com.example.Beemish.HerosJournal.RecyclerListFragment;
 import com.example.Beemish.HerosJournal.activities.CompletedTodos;
 import com.example.Beemish.HerosJournal.activities.MainActivity;
 import com.example.Beemish.HerosJournal.helpers.SettingsHelper;
@@ -36,12 +42,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 
-public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.PendingDataHolder>  {
+public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.PendingDataHolder> implements ItemTouchHelperAdapter {
     private ArrayList<PendingTodoModel> pendingTodoModels;
     private Context context;
     private String getTagTitleString;
     private TagDBHelper tagDBHelper;
     private TodoDBHelper todoDBHelper;
+
+
 
     // Constructor
     public PendingTodoAdapter(ArrayList<PendingTodoModel> pendingTodoModels, Context context) {
@@ -58,7 +66,7 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
 
     // Sets the information for the custom pendingToDo card
     @Override
-    public void onBindViewHolder(PendingTodoAdapter.PendingDataHolder holder, int position) {
+    public void onBindViewHolder(final PendingTodoAdapter.PendingDataHolder holder, int position) {
         todoDBHelper=new TodoDBHelper(context);
         final PendingTodoModel pendingTodoModel=pendingTodoModels.get(position);
         holder.todoTitle.setText(pendingTodoModel.getTodoTitle());
@@ -271,7 +279,7 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
         }).create().show();
     }
 
-    public class PendingDataHolder extends RecyclerView.ViewHolder {
+    public class PendingDataHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
         TextView todoTitle,todoContent,todoTag,todoDate,todoTime;
         ImageView option,makeCompleted;
         @SuppressLint("WrongViewCast")
@@ -284,6 +292,16 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
             todoTime=(TextView)itemView.findViewById(R.id.todo_time);
             option=(ImageView)itemView.findViewById(R.id.option);
             makeCompleted=(ImageView)itemView.findViewById(R.id.make_completed);
+        }
+
+        @Override
+        public void onItemSelected() {
+            itemView.setBackgroundColor(Color.LTGRAY);
+        }
+
+        @Override
+        public void onItemClear() {
+            itemView.setBackgroundColor(0);
         }
     }
 
@@ -301,5 +319,20 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
     private void moveTodoDown(final int tagID){
 
     }
+//----------------------------------------
+    @Override
+    public void onItemDismiss(int position) {
+        pendingTodoModels.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    @Override
+    public void onItemMove(int fromPosition, int toPosition) {
+        PendingTodoModel prev = pendingTodoModels.remove(fromPosition);
+        pendingTodoModels.add(toPosition > fromPosition ? toPosition - 1 : toPosition, prev);
+        notifyItemMoved(fromPosition, toPosition);
+    }
+//----------------------------------------
+
 
 }
