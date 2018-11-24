@@ -28,8 +28,8 @@ import android.widget.Toast;
 
 import com.example.Beemish.HerosJournal.ItemTouchHelperAdapter;
 import com.example.Beemish.HerosJournal.ItemTouchHelperViewHolder;
+import com.example.Beemish.HerosJournal.OnStartDragListener;
 import com.example.Beemish.HerosJournal.R;
-import com.example.Beemish.HerosJournal.RecyclerListFragment;
 import com.example.Beemish.HerosJournal.activities.CompletedTodos;
 import com.example.Beemish.HerosJournal.activities.MainActivity;
 import com.example.Beemish.HerosJournal.helpers.SettingsHelper;
@@ -48,11 +48,12 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
     private String getTagTitleString;
     private TagDBHelper tagDBHelper;
     private TodoDBHelper todoDBHelper;
-
+    private final OnStartDragListener onStartDragListener;
 
 
     // Constructor
-    public PendingTodoAdapter(ArrayList<PendingTodoModel> pendingTodoModels, Context context) {
+    public PendingTodoAdapter(ArrayList<PendingTodoModel> pendingTodoModels, Context context, OnStartDragListener onStartDragListener) {
+        this.onStartDragListener = onStartDragListener;
         this.pendingTodoModels = pendingTodoModels;
         this.context = context;
     }
@@ -90,12 +91,6 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
                             case R.id.delete:
                                 showDeleteDialog(pendingTodoModel.getTodoID());
                                 return true;
-                            case R.id.moveUp:
-                                moveTodoUp(pendingTodoModel.getTodoID());
-                                return true;
-                            case R.id.moveDown:
-                                moveTodoDown(pendingTodoModel.getTodoID());
-                                return true;
                             default:
                                 return false;
                         }
@@ -103,6 +98,16 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
                 });
             }
         });
+        //-------------------------- Drag and Drop
+        holder.todoContent.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (MotionEventCompat.getActionMasked(motionEvent) == MotionEvent.ACTION_DOWN) {
+                    onStartDragListener.onStartDrag(holder);
+                }
+                return false;            }
+        });
+        //---------------------------
         holder.makeCompleted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -296,7 +301,7 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
 
         @Override
         public void onItemSelected() {
-            itemView.setBackgroundColor(Color.LTGRAY);
+            itemView.setBackgroundColor(Color.rgb(	142, 92, 60));
         }
 
         @Override
@@ -312,14 +317,8 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
         notifyDataSetChanged();
     }
 
-    //MOVE TASK UP AND DOWN
-    private void moveTodoUp(final int tagID){
 
-    }
-    private void moveTodoDown(final int tagID){
-
-    }
-//----------------------------------------
+//----------------------------------------Drag and Drop
     @Override
     public void onItemDismiss(int position) {
         pendingTodoModels.remove(position);

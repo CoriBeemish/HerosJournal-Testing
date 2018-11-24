@@ -36,7 +36,9 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.Beemish.HerosJournal.OnStartDragListener;
 import com.example.Beemish.HerosJournal.R;
+import com.example.Beemish.HerosJournal.SimpleItemTouchHelperCallback;
 import com.example.Beemish.HerosJournal.adapters.PendingTodoAdapter;
 import com.example.Beemish.HerosJournal.helpers.IntentExtras;
 import com.example.Beemish.HerosJournal.helpers.SettingsHelper;
@@ -48,7 +50,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, OnStartDragListener{
 
     private RecyclerView pendingTodos;
     private LinearLayoutManager linearLayoutManager;
@@ -59,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String getTagTitleString, getRepeatString;
     private TodoDBHelper todoDBHelper;
     private LinearLayout linearLayout;
+
+    //--------------------Drag and Drop
+    private ItemTouchHelper mItemTouchHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,11 +94,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else{
             pendingTodoModels=new ArrayList<>();
             pendingTodoModels=todoDBHelper.fetchAllTodos();
-            pendingTodoAdapter=new PendingTodoAdapter(pendingTodoModels,this);
+            pendingTodoAdapter=new PendingTodoAdapter(pendingTodoModels,this,this);
         }
         linearLayoutManager=new LinearLayoutManager(this);
         pendingTodos.setAdapter(pendingTodoAdapter);
         pendingTodos.setLayoutManager(linearLayoutManager);
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(pendingTodoAdapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(pendingTodos);
 
         addNewTodo=(FloatingActionButton)findViewById(R.id.fabAddTodo);
         addNewTodo.setOnClickListener(this);
@@ -360,4 +368,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         builder.create().show();
     }
 
+    @Override
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        mItemTouchHelper.startDrag(viewHolder);
+    }
 }
