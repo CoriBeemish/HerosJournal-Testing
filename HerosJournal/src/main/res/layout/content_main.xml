@@ -25,29 +25,32 @@
 
     <LinearLayout
         android:id="@+id/no_pending_todo_section"
-        android:orientation="vertical"
-        android:visibility="gone"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="170dp"
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/pending_todos_icon"
-            android:src="@drawable/ic_pending_todos"
+            android:layout_width="150dp"
+            android:layout_height="69dp"
             android:layout_gravity="center"
             android:layout_margin="@dimen/pending_todo_icon_margin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:src="@drawable/ic_pending_todos"
+            app:srcCompat="@drawable/no_completed_todos3" />
 
         <TextView
             android:id="@+id/no_pending_todo_title"
-            android:text="@string/no_pending_todo_text"
-            android:layout_gravity="center"
-            android:textSize="@dimen/no_pending_todo_title_size"
-            android:textColor="@color/ic_pending_todos_title_color"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/play_bold"
+            android:text="@string/no_pending_todo_text"
+            android:textColor="@color/mainBGColor"
+            android:textSize="@dimen/no_pending_todo_title_size" />
 
     </LinearLayout>
 
@@ -229,7 +232,46 @@
         android:layout_alignTop="@+id/borderImage"
         android:layout_marginLeft="8dp"
         android:padding="4dp"
-        app:srcCompat="@drawable/avatar" />
+        app:srcCompat="@drawable/avatar_white_plaine_eyes" />
+    <ImageView
+        android:id="@+id/avatarShirt"
+        android:layout_width="142dp"
+        android:layout_height="152dp"
+        android:layout_alignBottom="@+id/borderImage"
+        android:layout_alignLeft="@+id/borderImage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/borderImage"
+        android:layout_alignTop="@+id/borderImage"
+        android:layout_marginLeft="8dp"
+        android:padding="4dp"
+        app:srcCompat="@drawable/gear_shirt_blue" />
+    <ImageView
+        android:id="@+id/avatarHelment"
+        android:layout_width="142dp"
+        android:layout_height="152dp"
+        android:layout_alignBottom="@+id/borderImage"
+        android:layout_alignLeft="@+id/borderImage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/borderImage"
+        android:layout_alignTop="@+id/borderImage"
+        android:layout_marginLeft="8dp"
+        android:padding="4dp"
+        app:srcCompat="@drawable/gear_helment_bucket" />
+    <ImageView
+        android:id="@+id/avatarSword"
+        android:layout_width="142dp"
+        android:layout_height="152dp"
+        android:layout_alignBottom="@+id/borderImage"
+        android:layout_alignLeft="@+id/borderImage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/borderImage"
+        android:layout_alignTop="@+id/borderImage"
+        android:layout_marginLeft="8dp"
+        android:padding="4dp"
+        app:srcCompat="@drawable/gear_sword_wooden" />
 
     <ImageView
         android:id="@+id/borderImage"

@@ -44,7 +44,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/play_bold"
             android:text="@string/no_completed_todo_text"
-            android:textColor="@color/PaperColorFont"
+            android:textColor="@color/mainBGColor"
             android:textSize="@dimen/no_completed_todo_title_size" />
     </LinearLayout>
 </RelativeLayout>

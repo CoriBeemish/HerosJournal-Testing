@@ -18,7 +18,10 @@ public class AvatarCustomizationActivity extends AppCompatActivity {
 
     //column is skin color, row is eye color
     private int drawableArray[][]= {
-            {R.drawable.avatar_white_plaine_eyes, R.drawable.avatar_white_big_eyes, R.drawable.avatar_white_sparkle_eyes,R.drawable.avatar_white_sleepy_eyes,}
+            {R.drawable.avatar_white_plaine_eyes, R.drawable.avatar_white_big_eyes, R.drawable.avatar_white_sparkle_eyes,R.drawable.avatar_white_sleepy_eyes,},
+            {R.drawable.avatar_skincolor_plain_eyes, R.drawable.avatar_skincolor_big_eyes, R.drawable.avatar_skincolor_sparkle_eyes,R.drawable.avatar_skincolor_sleepy_eyes,},
+            {R.drawable.avatar_dark_plain_eyes, R.drawable.avatar_dark_big_eyes, R.drawable.avatar_dark_sparkle_eyes,R.drawable.avatar_dark_sleepy_eyes,},
+            {R.drawable.avatar_green_plain_eyes, R.drawable.avatar_green_big_eyes, R.drawable.avatar_green_sparkle_eyes,R.drawable.avatar_green_sleepy_eyes,}
 
     };
     private int rowIndex = 0;
