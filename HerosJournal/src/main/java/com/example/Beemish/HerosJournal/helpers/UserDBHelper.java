@@ -51,6 +51,10 @@ public class UserDBHelper {
                 userModel = new UserModel(cursor.getInt(cursor.getColumnIndex((DatabaseHelper.COL_USER_ID))),
                         email, cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_USER_PASSWORD)));
                 userModel.setUserAvatar(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_USER_AVATAR)));
+
+                //TODO DEBUGGING
+                System.out.println(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_USER_AVATAR)));
+
                 userModel.setUserID(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_USER_ID)));
             }
         }
@@ -64,6 +68,8 @@ public class UserDBHelper {
         SQLiteDatabase sqLiteDatabase = this.databaseHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.COL_USER_EMAIL, userModel.getUserEmail());
+        contentValues.put(DatabaseHelper.COL_USER_PASSWORD, userModel.getUserPassword());
+        contentValues.put(DatabaseHelper.COL_USER_AVATAR, userModel.getUserAvatar());
         sqLiteDatabase.update(DatabaseHelper.TABLE_USER_EMAIL, contentValues, DatabaseHelper.COL_USER_ID + "=?",
                 new String[]{String.valueOf(userModel.getUserID())});
         sqLiteDatabase.close();
