@@ -30,6 +30,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -44,6 +45,7 @@ import com.example.Beemish.HerosJournal.helpers.IntentExtras;
 import com.example.Beemish.HerosJournal.helpers.SettingsHelper;
 import com.example.Beemish.HerosJournal.helpers.TagDBHelper;
 import com.example.Beemish.HerosJournal.helpers.TodoDBHelper;
+import com.example.Beemish.HerosJournal.helpers.UserDBHelper;
 import com.example.Beemish.HerosJournal.models.PendingTodoModel;
 
 import java.text.DateFormat;
@@ -61,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String getTagTitleString, getRepeatString;
     private TodoDBHelper todoDBHelper;
     private LinearLayout linearLayout;
+    private UserDBHelper userDBHelper;
+    private ImageView avatar;
 
     //--------------------Drag and Drop
     private ItemTouchHelper mItemTouchHelper;
@@ -78,7 +82,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationMenuInit();
         loadPendingTodos();
 
+        loadAvatar();
+    }
 
+    private void loadAvatar() {
+        userDBHelper = new UserDBHelper(this);
+        avatar = (ImageView) findViewById(R.id.avatar);
+        avatar.setImageResource(userDBHelper.fetchUser("root").getUserAvatar());
     }
 
     //loading all the pending activities
@@ -117,6 +127,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     showNewTodoDialog();
                 }
                 break;
+            case R.id.SpriteStatsButton:
+                //send username to load avatar image in SpriteStatsActivity
+                //String userEmail = getIntent().getStringExtra("username");
+                Intent i = new Intent(this, SpriteStatsActivity.class);
+                //i.putExtra("username", userEmail);
+                startActivity(i);
         }
     }
 

@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.Beemish.HerosJournal.R;
+import com.example.Beemish.HerosJournal.helpers.TagDBHelper;
+import com.example.Beemish.HerosJournal.helpers.UserDBHelper;
+import com.example.Beemish.HerosJournal.models.UserModel;
 
 import io.realm.Realm;
 import io.realm.exceptions.RealmPrimaryKeyConstraintException;
@@ -19,6 +22,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Realm realm;
     private MyRealmObject myRealmObject;
     private EditText registerEmail, registerPassword, confirmPassword;
+
+    private UserDBHelper userDBHelper;
 
     private Button signupButton;
 
@@ -46,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
                     showSnackBar("Passwords Do Not Match");
                 } else {
                     try {
-                        realm.beginTransaction();
+                        /*realm.beginTransaction();
 
                         myRealmObject = realm.createObject(MyRealmObject.class,
                                 registerEmail.getText().toString());
@@ -56,6 +61,12 @@ public class RegisterActivity extends AppCompatActivity {
                         realm.commitTransaction();
 
                         showSnackBar("Account Created");
+*/
+                        //SQL version
+
+                        createNewUser();
+
+
                         finish();
                     } catch (RealmPrimaryKeyConstraintException e) {
                         e.printStackTrace();
@@ -64,6 +75,12 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void createNewUser() {
+        userDBHelper = new UserDBHelper(this);
+        UserModel userModel = new UserModel(userDBHelper.countUsers() + 1, registerEmail.getText().toString(), registerPassword.getText().toString());
+        userDBHelper.addNewUser(userModel);
     }
 
     private void showSnackBar(String msg) {

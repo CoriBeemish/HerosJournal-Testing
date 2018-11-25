@@ -25,6 +25,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_DEFAULT_STATUS="pending";
     public static final String COL_STATUS_COMPLETED="completed";
 
+    //user table and columns
+    public static final String TABLE_USER_EMAIL="users";
+    public static final String COL_USER_ID = "user_id";
+    public static final String COL_USER_EMAIL = "user_email";
+    public static final String COL_USER_PASSWORD = "user_password";
+    public static final String COL_USER_AVATAR = "user_avatar";
+
     //forcing foreign key
     public static final String FORCE_FOREIGN_KEY="PRAGMA foreign_keys=ON";
 
@@ -47,10 +54,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     + COL_TODO_TAG+") REFERENCES "
                     + TABLE_TAG_NAME + "(" + COL_TAG_ID +" ) ON UPDATE CASCADE ON DELETE CASCADE" + ")";
 
+    //creating user table query
+    private static final String CREATE_USER_TABLE =
+            "CREATE TABLE IF NOT EXISTS " + TABLE_USER_EMAIL +
+                    "(" + COL_USER_ID+ " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+                    + COL_USER_EMAIL + " TEXT NOT NULL,"
+                    + COL_USER_PASSWORD + " TEXT NOT NULL,"
+                    + COL_USER_AVATAR + " INTEGER NOT NULL" + ")";
+
     //dropping tags table
     private static final String DROP_TAGS_TABLE="DROP TABLE IF EXISTS " + TABLE_TAG_NAME;
     //dropping todos table
     private static final String DROP_TODOS_TABLE="DROP TABLE IF EXISTS " + TABLE_TODO_NAME;
+    //dropping users table
+    private static final String DROP_USER_TABLE="DROP TABLE IF EXISTS " + TABLE_USER_EMAIL;
 
 
     public DatabaseHelper(Context context) {
@@ -61,6 +78,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_TAGS_TABLE);
         sqLiteDatabase.execSQL(CREATE_TODOS_TABLE);
+        sqLiteDatabase.execSQL(CREATE_USER_TABLE);
+        System.out.println("********************************TESTTESTTESTTEST*******************************)");
         sqLiteDatabase.execSQL(FORCE_FOREIGN_KEY);
     }
 
@@ -68,6 +87,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL(DROP_TAGS_TABLE);
         sqLiteDatabase.execSQL(DROP_TODOS_TABLE);
+        sqLiteDatabase.execSQL(DROP_USER_TABLE);
         onCreate(sqLiteDatabase);
     }
 }

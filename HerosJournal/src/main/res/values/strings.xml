@@ -6,6 +6,8 @@
     <string name="complete_todo_activity_title">Completed Activities</string>
     <string name="all_tags_title">Attributes</string>
     <string name="settings_title">App Settings</string>
+    <string name="sprite_page_title">Attribute Stats</string>
+    <string name="sprite_customization_title">Customize Character</string>
 
     <string name="healthLabel">Health</string>
     <string name="manaLabel">Mana</string>

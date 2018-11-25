@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.Beemish.HerosJournal.activities.SpriteStatsActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/custom_toolbar_layout" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/spritePageBackground"
+        android:layout_width="111dp"
+        android:layout_height="0dp"
+        android:layout_alignLeft="@+id/customizationBorderImage"
+        android:layout_alignTop="@+id/customizationBorderImage"
+        android:layout_alignRight="@+id/customizationBorderImage"
+        android:layout_alignBottom="@+id/customizationBorderImage"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:padding="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/spritePageBorder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spritePageBorder"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/avatar_bg" />
+
+    <ImageView
+        android:id="@+id/spritePageAvatar"
+        android:layout_width="140dp"
+        android:layout_height="0dp"
+        android:layout_alignLeft="@+id/customizationBorderImage"
+        android:layout_alignTop="@+id/customizationBorderImage"
+        android:layout_alignRight="@+id/customizationBorderImage"
+        android:layout_alignBottom="@+id/customizationBorderImage"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/spritePageBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spritePageBackground"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/avatar" />
+
+    <ImageView
+        android:id="@+id/spritePageBorder"
+        android:layout_width="117dp"
+        android:layout_height="123dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="60dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/avatar_border" />
+
+    <Button
+        android:id="@+id/customizeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="onClick"
+        android:text="Customize \nAppearance"
+        app:layout_constraintBottom_toBottomOf="@+id/spritePageBorder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBar" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/attributeLevelsView"
+        android:layout_width="371dp"
+        android:layout_height="365dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customizeButton"
+        app:layout_constraintVertical_bias="1.0" />
+</android.support.constraint.ConstraintLayout>
