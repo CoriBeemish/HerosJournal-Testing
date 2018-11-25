@@ -16,7 +16,10 @@ public class AvatarCustomizationActivity extends AppCompatActivity {
     UserDBHelper userDBHelper;
 
     //column is skin color, row is eye color
-    int[][] drawableArray= {{R.drawable.avatar, R.drawable.avatar} , {R.drawable.avatar, R.drawable.avatar}};
+    int[][] drawableArray= {
+            {R.drawable.avatar_white_plaine_eyes, R.drawable.avatar_white_big_eyes, R.drawable.avatar_white_sparkle_eyes,R.drawable.avatar_white_sleepy_eyes,}
+
+    };
     int rowIndex = 0;
     int columnIndex = 0;
 
