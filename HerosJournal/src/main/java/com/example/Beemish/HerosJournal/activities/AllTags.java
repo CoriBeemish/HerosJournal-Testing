@@ -48,7 +48,7 @@ public class AllTags extends AppCompatActivity implements View.OnClickListener{
         loadTags();
     }
 
-    //load all the tags
+    // Load all the tags
     private void loadTags(){
         allTags=(RecyclerView)findViewById(R.id.viewAllTags);
         linearLayout=(LinearLayout)findViewById(R.id.no_tags_available);
@@ -121,7 +121,7 @@ public class AllTags extends AppCompatActivity implements View.OnClickListener{
         }
     }
 
-    //show add new tag dialog
+    // Shows "Add New Attribute" dialog
     private void showNewTagDialog(){
         final AlertDialog.Builder builder=new AlertDialog.Builder(this);
         LayoutInflater layoutInflater=(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -142,9 +142,9 @@ public class AllTags extends AppCompatActivity implements View.OnClickListener{
                 boolean tagExists=tagDBHelper.tagExists(getTagTitle);
 
                 if(isTagEmpty){
-                    tagTitle.setError("Tag title required!");
+                    tagTitle.setError("Attribute name required!");
                 }else if(tagExists){
-                    tagTitle.setError("Tag title already exists!");
+                    tagTitle.setError("Attribute already exists!");
                 }else {
                     if(tagDBHelper.addNewTag(new TagsModel(getTagTitle))){
                         Toast.makeText(AllTags.this, R.string.tag_title_add_success_msg, Toast.LENGTH_SHORT).show();

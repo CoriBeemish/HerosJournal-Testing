@@ -44,7 +44,7 @@ public class CompletedTodos extends AppCompatActivity {
         loadCompletedTodos();
     }
 
-    //loading all the completed todos
+    // Loads all of the completed todos
     private void loadCompletedTodos(){
         completedTodos=(RecyclerView)findViewById(R.id.completed_todos_view);
         todoDBHelper=new TodoDBHelper(this);
@@ -112,7 +112,7 @@ public class CompletedTodos extends AppCompatActivity {
         }
     }
 
-    //showing the delete confirmation dialog
+    // Shows the delete confirmation dialog
     private void deleteDialog(){
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
         builder.setTitle("Activity delete confirmation");

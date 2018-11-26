@@ -21,7 +21,7 @@ public class TagDBHelper{
         databaseHelper=new DatabaseHelper(context);
     }
 
-    //add new tags into the database
+    // Adds new attribute tags into the database
     public boolean addNewTag(TagsModel tagsModel){
         SQLiteDatabase sqLiteDatabase=this.databaseHelper.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
@@ -31,7 +31,7 @@ public class TagDBHelper{
         return true;
     }
 
-    //check whether the tag exists or not
+    // Check if the attribute tag exists already or not
     public boolean tagExists(String tagTitle){
         SQLiteDatabase sqLiteDatabase=this.databaseHelper.getReadableDatabase();
         String query="SELECT " + DatabaseHelper.COL_TAG_TITLE + " FROM " + DatabaseHelper.TABLE_TAG_NAME + " WHERE " + DatabaseHelper.COL_TAG_TITLE+"=?";
@@ -39,7 +39,7 @@ public class TagDBHelper{
         return (cursor.getCount()>0)?true:false;
     }
 
-    //count tags from the database
+    // Counts attribute tags from the database
     public int countTags(){
         SQLiteDatabase sqLiteDatabase=this.databaseHelper.getReadableDatabase();
         String query="SELECT " + DatabaseHelper.COL_TAG_ID + " FROM " + DatabaseHelper.TABLE_TAG_NAME;
@@ -51,7 +51,7 @@ public class TagDBHelper{
         return count;
     }
 
-    //fetch all the tags from the database
+    // Gets all of the attribute tags from the database
     public ArrayList<TagsModel> fetchTags(){
         SQLiteDatabase sqLiteDatabase=this.databaseHelper.getReadableDatabase();
         ArrayList<TagsModel> tagsModels=new ArrayList<>();
@@ -68,7 +68,7 @@ public class TagDBHelper{
         return tagsModels;
     }
 
-    //delete tag from the database according to the id
+    // Deletes attribute tag from the database according to the id
     public boolean removeTag(int tagID){
         SQLiteDatabase sqLiteDatabase=this.databaseHelper.getReadableDatabase();
         sqLiteDatabase.execSQL(DatabaseHelper.FORCE_FOREIGN_KEY);
@@ -78,7 +78,7 @@ public class TagDBHelper{
         return true;
     }
 
-    //update tag from the database according to the tag id
+    // Update attribute tag from the database according to the tag id
     public boolean saveTag(TagsModel tagsModel){
         SQLiteDatabase sqLiteDatabase=this.databaseHelper.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
@@ -90,8 +90,8 @@ public class TagDBHelper{
     }
 
 
-    //fetch all the tags title strings from the database
-    //This sets the strings for the spinner in the options menu from what's already in COL_TAG_TITLE
+    // Gets all of the attribute tags title strings from the database
+    // This sets the strings for the spinner in the options menu from what's already in COL_TAG_TITLE
     public ArrayList<String> fetchTagStrings(){
         SQLiteDatabase sqLiteDatabase=this.databaseHelper.getReadableDatabase();
         ArrayList<String> tagsModels=new ArrayList<>();
@@ -105,7 +105,7 @@ public class TagDBHelper{
         return tagsModels;
     }
 
-    //fetch tag title from the database according to the tag id
+    // Gets attribute tag title from the database according to the tag id
     public String fetchTagTitle(int tagID){
         SQLiteDatabase sqLiteDatabase=this.databaseHelper.getReadableDatabase();
         String fetchTitle="SELECT " + DatabaseHelper.COL_TAG_TITLE + " FROM " + DatabaseHelper.TABLE_TAG_NAME
@@ -120,7 +120,7 @@ public class TagDBHelper{
         return title;
     }
 
-    //fetch tag id from the database according to the tag title
+    // Gets attribute tag ID from the database according to the tag title
     public int fetchTagID(String tagTitle){
         //check for illegal argument [Augi - 11/11/2018 edit]
         if(tagTitle != null){

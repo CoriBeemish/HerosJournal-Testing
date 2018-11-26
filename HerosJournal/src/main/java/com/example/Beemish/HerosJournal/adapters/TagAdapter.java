@@ -84,7 +84,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.TagDataHolder> {
         }
     }
 
-    //remove tag
+    // Removes attribute tag
     private void removeTag(final int tagID){
         AlertDialog.Builder builder=new AlertDialog.Builder(context);
         builder.setTitle(R.string.tag_delete_dialog_title);
@@ -106,7 +106,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.TagDataHolder> {
         }).create().show();
     }
 
-    //update tag
+    // Updates tag
     private void editTag(final int tagID){
         AlertDialog.Builder builder=new AlertDialog.Builder(context);
         LayoutInflater layoutInflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -147,7 +147,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.TagDataHolder> {
         builder.create().show();
     }
 
-    //search filter
+    // Search filter
     public void filterTags(ArrayList<TagsModel> newTagsModels){
         tagsModels=new ArrayList<>();
         tagsModels.addAll(newTagsModels);

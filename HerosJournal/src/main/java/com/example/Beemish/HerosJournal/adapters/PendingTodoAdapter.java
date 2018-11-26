@@ -244,7 +244,7 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
                 boolean isDateEmpty=todoDate.getText().toString().isEmpty();
                 boolean isTimeEmpty=todoTime.getText().toString().isEmpty();
 
-                // Checking if a field is empty and then add the new todo
+                // Checking if a field is empty and then add the new to-do
                 if(isTitleEmpty){
                     todoTitle.setError("Todo title required !");
                 }else if(todoDBHelper.updateTodo(
@@ -264,7 +264,7 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
         builder.create().show();
     }
 
-    // Showing confirmation dialog for making the todo completed
+    // Showing confirmation dialog for making the to-do completed
     private void showCompletedDialog(final int tagID){
         AlertDialog.Builder builder=new AlertDialog.Builder(context);
         builder.setTitle("Completed Dialog");

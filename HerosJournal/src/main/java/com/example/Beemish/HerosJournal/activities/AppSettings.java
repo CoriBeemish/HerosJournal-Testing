@@ -34,7 +34,7 @@ public class AppSettings extends AppCompatActivity {
         }
     }
 
-    //getting the setting fragment
+    // Getting the setting fragment
     private void getPrefFragment(){
         FragmentManager fragmentManager=getFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();

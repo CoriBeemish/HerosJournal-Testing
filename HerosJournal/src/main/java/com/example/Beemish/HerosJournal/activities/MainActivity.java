@@ -1,15 +1,21 @@
 package com.example.Beemish.HerosJournal.activities;
 
 import android.app.DatePickerDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,6 +28,7 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,6 +59,8 @@ import com.example.Beemish.HerosJournal.models.UserModel;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, OnStartDragListener{
 
@@ -69,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //--------------------Drag and Drop
     private ItemTouchHelper mItemTouchHelper;
+
+    private NotificationManager notifManager; // Alarm Notification Manager
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         pendingTodos=(RecyclerView)findViewById(R.id.pending_todos_view);
         linearLayout=(LinearLayout)findViewById(R.id.no_pending_todo_section);
         tagDBHelper=new TagDBHelper(this); // Gets tag database
-        todoDBHelper=new TodoDBHelper(this); // Gets todo database
+        todoDBHelper=new TodoDBHelper(this); // Gets to-do database
 
         if(todoDBHelper.countTodos()==0){
             linearLayout.setVisibility(View.VISIBLE);
@@ -251,8 +262,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    //show dialog if there is no tag in the database
-    // This shouldn't show at all unless you're on the tag page itself
+    // Shows dialog if there are no attribute tags in the database
     private void showNewTodoDialog(){
             AlertDialog.Builder builder=new AlertDialog.Builder(this);
             builder.setTitle(R.string.tag_create_dialog_title_text);
@@ -271,8 +281,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
-    //show add new todos dialog and adding the todos into the database
+    // Show "Add New To-dos" dialog and adds the to-dos into the database
     private void showDialog(){
         //getting current calendar credentials
         final Calendar calendar=Calendar.getInstance();
@@ -289,7 +298,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         builder.setView(view);
         SettingsHelper.applyThemeTextView((TextView)view.findViewById(R.id.add_todo_dialog_title),this); // Settings
 
-        //finding the input text fields of add_new_todo_dialog
+        // Finding the input text fields of add_new_todo_dialog
         final TextInputEditText todoTitle=(TextInputEditText)view.findViewById(R.id.todo_title);
         final TextInputEditText todoContent=(TextInputEditText)view.findViewById(R.id.todo_content);
 
@@ -318,7 +327,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final TextInputEditText todoDate=(TextInputEditText)view.findViewById(R.id.todo_date);
         final TextInputEditText todoTime=(TextInputEditText)view.findViewById(R.id.todo_time);
 
-        // Getting the tododate
+        // Getting the todos date
         todoDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -346,6 +355,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         calendar.set(Calendar.MINUTE,i1);
                         String timeFormat=DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
                         todoTime.setText(timeFormat);
+
+                        // Trunchcating the timepicker time and setting the difference
+                        calendar.set(Calendar.MILLISECOND, 0);
+                        calendar.set(Calendar.SECOND, 0);
+
+                        long milliAlarm = calendar.getTimeInMillis();
+                        Log.d("MyAlarm ", "Calendar Time: " + milliAlarm);
+
+                        long currentTime = System.currentTimeMillis();
+                        Log.d("MyAlarm ", "Current Time: " + currentTime);
+
+                        int timeDifference = (int) (milliAlarm - currentTime);
+                        Log.d("MyAlarm ", "Time Difference: " + timeDifference);
+
+                        // Scheduling the alarm & notification
+                        scheduleNotification(timeDifference);
                     }
                 },hour,minute,false);
                 timePickerDialog.show();
@@ -400,5 +425,68 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
         mItemTouchHelper.startDrag(viewHolder);
+    }
+
+    private void scheduleNotification(int delay) {
+        Log.d("MyAlarm ", "Delay: " + delay);
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                createNotification("A task is due!", MainActivity.this);
+            }
+        }, delay);
+    }
+
+    // Creating the notification
+    public void createNotification(String aMessage, Context context) {
+        final int NOTIFY_ID = 0; // ID of notification
+        String id = context.getString(R.string.default_notification_channel_id); // default_channel_id
+        String title = context.getString(R.string.default_notification_channel_title); // Default Channel
+        Intent intent;
+        PendingIntent pendingIntent;
+        NotificationCompat.Builder builder;
+        if (notifManager == null) {
+            notifManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel mChannel = notifManager.getNotificationChannel(id);
+            if (mChannel == null) {
+                mChannel = new NotificationChannel(id, title, importance);
+                mChannel.enableVibration(true);
+                mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+                notifManager.createNotificationChannel(mChannel);
+            }
+            builder = new NotificationCompat.Builder(context, id);
+            intent = new Intent(context, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            builder.setContentTitle(aMessage)
+                    .setSmallIcon(android.R.drawable.ic_popup_reminder)
+                    .setContentText(context.getString(R.string.app_name))
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
+                    .setTicker(aMessage)
+                    .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+        }
+        else {
+            builder = new NotificationCompat.Builder(context, id);
+            intent = new Intent(context, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            builder.setContentTitle(aMessage)                            // required
+                    .setSmallIcon(android.R.drawable.ic_popup_reminder)   // required
+                    .setContentText(context.getString(R.string.app_name)) // required
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
+                    .setTicker(aMessage)
+                    .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
+                    .setPriority(Notification.PRIORITY_HIGH);
+        }
+        Notification notification = builder.build();
+        notifManager.notify(NOTIFY_ID, notification);
     }
 }

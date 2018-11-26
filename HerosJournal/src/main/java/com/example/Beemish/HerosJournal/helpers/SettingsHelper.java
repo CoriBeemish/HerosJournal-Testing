@@ -8,10 +8,6 @@ import android.widget.TextView;
 
 import com.example.Beemish.HerosJournal.R;
 
-/**
- * Created by Beemish on 1/19/18.
- */
-
 public class SettingsHelper {
 
     //apply theme for toolbar

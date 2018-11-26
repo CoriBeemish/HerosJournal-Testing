@@ -16,10 +16,6 @@ import com.example.Beemish.HerosJournal.models.CompletedTodoModel;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- * Created by Beemish on 12/27/17.
- */
-
 public class CompletedTodoAdapter extends RecyclerView.Adapter<CompletedTodoAdapter.CompletedDataHolder>{
     private ArrayList<CompletedTodoModel> completedTodoModels;
     private Context context;
@@ -29,7 +25,6 @@ public class CompletedTodoAdapter extends RecyclerView.Adapter<CompletedTodoAdap
         this.completedTodoModels = completedTodoModels;
         this.context = context;
     }
-
 
     @Override
     public CompletedTodoAdapter.CompletedDataHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -67,7 +62,7 @@ public class CompletedTodoAdapter extends RecyclerView.Adapter<CompletedTodoAdap
         }
     }
 
-    //filter the search
+    // Search Filter
     public void filterCompletedTodos(ArrayList<CompletedTodoModel> newCompletedTodoModels){
         completedTodoModels=new ArrayList<>();
         completedTodoModels.addAll(newCompletedTodoModels);
