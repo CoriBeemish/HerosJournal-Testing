@@ -13,7 +13,7 @@ import com.example.Beemish.HerosJournal.models.UserModel;
 
 public class AvatarCustomizationActivity extends AppCompatActivity {
 
-    private ImageView avatar;
+    private ImageView avatar, avatarWeapon, avatarShirt, avatarHelmet, avatarBackground;
     UserDBHelper userDBHelper;
 
     //column is skin color, row is eye color
@@ -27,6 +27,16 @@ public class AvatarCustomizationActivity extends AppCompatActivity {
     private int rowIndex = 0;
     private int columnIndex = 0;
 
+    private int weaponArray[] = {R.drawable.gear_sword_gold, R.drawable.gear_sword_iron, R.drawable.gear_sword_wooden};
+    private int helmetArray[] = {R.drawable.gear_helment_bucket};
+    private int shirtArray[] = {R.drawable.gear_shirt_blue, R.drawable.gear_shirt_green, R.drawable.gear_shirt_orange};
+    private int backgroundArray[] = {R.drawable.background_sunset};
+
+    private int weaponIndex = 0;
+    private int helmetIndex = 0;
+    private int shirtIndex = 0;
+    private int backgroundIndex = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,23 +48,47 @@ public class AvatarCustomizationActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         SettingsHelper.applyThemeToolbar((Toolbar)findViewById(R.id.toolbar), this);
 
-        setAvatarImage();
+        loadAvatarImage();
+    }
+
+    private void loadAvatarImage() {
+        userDBHelper = new UserDBHelper(this);
+        avatar = (ImageView)findViewById(R.id.avatarCustomization);
+        avatarWeapon = findViewById(R.id.avatarCustomizationSword);
+        avatarHelmet = findViewById(R.id.avatarCustomizationHelment);
+        avatarShirt = findViewById(R.id.avatarCustomizationShirt);
+        avatarBackground = findViewById(R.id.avatarCustomizationBackground);
+
+        UserModel userModel = userDBHelper.fetchUser("root");
+        avatar.setImageResource(userModel.getUserAvatar());
+        avatarWeapon.setImageResource(userModel.getUserWeaponValue());
+        avatarHelmet.setImageResource(userModel.getUserHelmetValue());
+        avatarShirt.setImageResource(userModel.getUserShirtValue());
+        avatarBackground.setImageResource(userModel.getUserBackgroundValue());
     }
 
     private void setAvatarImage() {
         userDBHelper = new UserDBHelper(this);
-        avatar = (ImageView)findViewById(R.id.avatarCustomization);
 
-        //userDBHelper.fetchUser(userDBHelper.fetchUser("root").getUserPassword()).setUserAvatar(drawableArray[columnIndex][rowIndex]);
+        //set logged in user
         UserModel userModel = userDBHelper.fetchUser(userDBHelper.fetchUser("root").getUserPassword());
         userModel.setUserAvatar(drawableArray[columnIndex][rowIndex]);
-        userDBHelper.saveUser(userModel);
-        //userDBHelper.fetchUser("root").setUserAvatar(drawableArray[columnIndex][rowIndex])
-        userModel = userDBHelper.fetchUser("root");
-        userModel.setUserAvatar(drawableArray[columnIndex][rowIndex]);
+        userModel.setUserWeaponValue(weaponArray[weaponIndex]);
+        userModel.setUserHelmetValue(helmetArray[helmetIndex]);
+        userModel.setUserShirtValue(shirtArray[shirtIndex]);
+        userModel.setUserBackgroundValue(backgroundArray[backgroundIndex]);
         userDBHelper.saveUser(userModel);
 
-        avatar.setImageResource(userDBHelper.fetchUser("root").getUserAvatar());
+        //Set root user
+        userModel = userDBHelper.fetchUser("root");
+        userModel.setUserAvatar(drawableArray[columnIndex][rowIndex]);
+        userModel.setUserWeaponValue(weaponArray[weaponIndex]);
+        userModel.setUserHelmetValue(helmetArray[helmetIndex]);
+        userModel.setUserShirtValue(shirtArray[shirtIndex]);
+        userModel.setUserBackgroundValue(backgroundArray[backgroundIndex]);
+        userDBHelper.saveUser(userModel);
+
+        loadAvatarImage();
     }
 
     public void onClick(View view) {
@@ -82,6 +116,30 @@ public class AvatarCustomizationActivity extends AppCompatActivity {
                 if (rowIndex == 0) {
                     rowIndex = drawableArray[columnIndex].length - 1;
                 } else ++rowIndex;
+                setAvatarImage();
+                break;
+            case R.id.weaponStyleNextButton:
+                if (weaponIndex == weaponArray.length - 1) weaponIndex = 0; else ++weaponIndex;
+                setAvatarImage();
+                break;
+            case R.id.weaponStylePreviousButton:
+                if (weaponIndex == 0) weaponIndex = weaponArray.length - 1; else --weaponIndex;
+                setAvatarImage();
+                break;
+            case R.id.shirtStyleNextButton:
+                if (shirtIndex == shirtArray.length - 1) shirtIndex = 0; else ++shirtIndex;
+                setAvatarImage();
+                break;
+            case R.id.shirtStylePreviousButton:
+                if (shirtIndex == 0) shirtIndex = shirtArray.length - 1; else --shirtIndex;
+                setAvatarImage();
+                break;
+            case R.id.helmetStyleNextButton:
+                if (helmetIndex == helmetArray.length - 1) helmetIndex = 0; else ++helmetIndex;
+                setAvatarImage();
+                break;
+            case R.id.helmetStylePreviousButton:
+                if (helmetIndex == 0) helmetIndex = helmetArray.length - 1; else --helmetIndex;
                 setAvatarImage();
                 break;
         }

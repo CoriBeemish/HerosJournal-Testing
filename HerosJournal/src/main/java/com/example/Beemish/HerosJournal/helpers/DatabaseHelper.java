@@ -31,6 +31,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_USER_EMAIL = "user_email";
     public static final String COL_USER_PASSWORD = "user_password";
     public static final String COL_USER_AVATAR = "user_avatar";
+    public static final String COL_USER_WEAPON = "user_weapon";
+    public static final String COL_USER_HELMET = "user_helmet";
+    public static final String COL_USER_SHIRT = "user_shirt";
+    public static final String COL_USER_BACKGROUND = "user_background";
 
     //forcing foreign key
     public static final String FORCE_FOREIGN_KEY="PRAGMA foreign_keys=ON";
@@ -60,7 +64,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "(" + COL_USER_ID+ " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
                     + COL_USER_EMAIL + " TEXT NOT NULL,"
                     + COL_USER_PASSWORD + " TEXT NOT NULL,"
-                    + COL_USER_AVATAR + " INTEGER NOT NULL" + ")";
+                    + COL_USER_AVATAR + " INTEGER NOT NULL,"
+                    + COL_USER_WEAPON + " INTEGER,"
+                    + COL_USER_HELMET + " INTEGER,"
+                    + COL_USER_SHIRT + " INTEGER,"
+                    + COL_USER_BACKGROUND + " INTEGER NOT NULL" + ")";
 
     //dropping tags table
     private static final String DROP_TAGS_TABLE="DROP TABLE IF EXISTS " + TABLE_TAG_NAME;
@@ -79,7 +87,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_TAGS_TABLE);
         sqLiteDatabase.execSQL(CREATE_TODOS_TABLE);
         sqLiteDatabase.execSQL(CREATE_USER_TABLE);
-        System.out.println("********************************TESTTESTTESTTEST*******************************)");
         sqLiteDatabase.execSQL(FORCE_FOREIGN_KEY);
     }
 

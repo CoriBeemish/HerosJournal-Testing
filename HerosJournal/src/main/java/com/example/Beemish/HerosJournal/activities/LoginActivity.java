@@ -99,8 +99,12 @@ public class LoginActivity extends AppCompatActivity {
         if (userDBHelper.userExists(email) && userDBHelper.fetchUser(email).getUserPassword().equals(password)) {
             //set root.avatar = user.avatar
             //set root.password = user.password
-            UserModel userModel = new UserModel(1, "root", userDBHelper.fetchUser(email).getUserEmail());
-            userModel.setUserAvatar(userDBHelper.fetchUser(email).getUserAvatar());
+            UserModel userModel = new UserModel(1, "root", userDBHelper.fetchUser(email).getUserEmail(),
+                    userDBHelper.fetchUser(email).getUserAvatar(),
+                    userDBHelper.fetchUser(email).getUserWeaponValue(),
+                    userDBHelper.fetchUser(email).getUserHelmetValue(),
+                    userDBHelper.fetchUser(email).getUserShirtValue(),
+                    userDBHelper.fetchUser(email).getUserBackgroundValue());
             userDBHelper.saveUser(userModel);
 
             return true;

@@ -12,6 +12,7 @@ import com.example.Beemish.HerosJournal.R;
 import com.example.Beemish.HerosJournal.helpers.SettingsHelper;
 import com.example.Beemish.HerosJournal.helpers.TagDBHelper;
 import com.example.Beemish.HerosJournal.helpers.UserDBHelper;
+import com.example.Beemish.HerosJournal.models.UserModel;
 
 public class SpriteStatsActivity extends AppCompatActivity {
 
@@ -19,7 +20,7 @@ public class SpriteStatsActivity extends AppCompatActivity {
     private UserDBHelper userDBHelper;
 
     private RecyclerView tenTags;
-    private ImageView userAvatar;
+    private ImageView userAvatar, avatarWeapon, avatarShirt, avatarHelmet, avatarBackground;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +37,20 @@ public class SpriteStatsActivity extends AppCompatActivity {
         tenTags.setVisibility(View.GONE); //TODO
 
         userDBHelper = new UserDBHelper(this);
+
+        avatarWeapon = findViewById(R.id.spritePageAvatarSword);
+        avatarHelmet = findViewById(R.id.spritePageAvatarHelment);
+        avatarShirt = findViewById(R.id.spritePageAvatarShirt);
+        avatarBackground = findViewById(R.id.spritePageBackground);
         userAvatar = (ImageView) findViewById(R.id.spritePageAvatar);
-        userAvatar.setImageResource(userDBHelper.fetchUser("root").getUserAvatar());
+
+        UserModel userModel = userDBHelper.fetchUser("root");
+
+        userAvatar.setImageResource(userModel.getUserAvatar());
+        avatarWeapon.setImageResource(userModel.getUserWeaponValue());
+        avatarHelmet.setImageResource(userModel.getUserHelmetValue());
+        avatarShirt.setImageResource(userModel.getUserShirtValue());
+        avatarBackground.setImageResource(userModel.getUserBackgroundValue());
     }
 
     public void onClick(View view) {

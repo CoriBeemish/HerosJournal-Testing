@@ -26,6 +26,10 @@ public class UserDBHelper {
         contentValues.put(DatabaseHelper.COL_USER_EMAIL, userModel.getUserEmail());
         contentValues.put(DatabaseHelper.COL_USER_PASSWORD, userModel.getUserPassword());
         contentValues.put(DatabaseHelper.COL_USER_AVATAR, userModel.getUserAvatar());
+        contentValues.put(DatabaseHelper.COL_USER_WEAPON, userModel.getUserWeaponValue());
+        contentValues.put(DatabaseHelper.COL_USER_HELMET, userModel.getUserHelmetValue());
+        contentValues.put(DatabaseHelper.COL_USER_SHIRT, userModel.getUserShirtValue());
+        contentValues.put(DatabaseHelper.COL_USER_BACKGROUND, userModel.getUserBackgroundValue());
         sqLiteDatabase.insert(DatabaseHelper.TABLE_USER_EMAIL, null, contentValues);
         sqLiteDatabase.close();
         return true;
@@ -51,11 +55,11 @@ public class UserDBHelper {
                 userModel = new UserModel(cursor.getInt(cursor.getColumnIndex((DatabaseHelper.COL_USER_ID))),
                         email, cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_USER_PASSWORD)));
                 userModel.setUserAvatar(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_USER_AVATAR)));
-
-                //TODO DEBUGGING
-                System.out.println(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_USER_AVATAR)));
-
                 userModel.setUserID(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_USER_ID)));
+                userModel.setUserWeaponValue(cursor.getInt(cursor.getColumnIndex((DatabaseHelper.COL_USER_WEAPON))));
+                userModel.setUserHelmetValue(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_USER_HELMET)));
+                userModel.setUserShirtValue(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_USER_SHIRT)));
+                userModel.setUserBackgroundValue(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_USER_BACKGROUND)));
             }
         }
         cursor.close();
@@ -70,6 +74,10 @@ public class UserDBHelper {
         contentValues.put(DatabaseHelper.COL_USER_EMAIL, userModel.getUserEmail());
         contentValues.put(DatabaseHelper.COL_USER_PASSWORD, userModel.getUserPassword());
         contentValues.put(DatabaseHelper.COL_USER_AVATAR, userModel.getUserAvatar());
+        contentValues.put(DatabaseHelper.COL_USER_WEAPON, userModel.getUserWeaponValue());
+        contentValues.put(DatabaseHelper.COL_USER_HELMET, userModel.getUserHelmetValue());
+        contentValues.put(DatabaseHelper.COL_USER_SHIRT, userModel.getUserShirtValue());
+        contentValues.put(DatabaseHelper.COL_USER_BACKGROUND, userModel.getUserBackgroundValue());
         sqLiteDatabase.update(DatabaseHelper.TABLE_USER_EMAIL, contentValues, DatabaseHelper.COL_USER_ID + "=?",
                 new String[]{String.valueOf(userModel.getUserID())});
         sqLiteDatabase.close();

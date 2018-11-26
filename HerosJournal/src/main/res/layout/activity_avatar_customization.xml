@@ -122,6 +122,125 @@
 
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/weaponStylePreviousButton"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="45dp"
+                android:background="@drawable/button_prev"
+                android:onClick="onClick"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/eyeStyleText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skinColorPreviousButton" />
+
+            <TextView
+                android:id="@+id/weaponStyleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/play_bold"
+                android:text="Weapon"
+                android:textColor="@color/fontColorPanel"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="141dp"
+                tools:layout_editor_absoluteY="322dp" />
+
+            <Button
+                android:id="@+id/weaponStyleNextButton"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="45dp"
+                android:background="@drawable/button_next"
+                android:onClick="onClick"
+                tools:layout_editor_absoluteX="238dp"
+                tools:layout_editor_absoluteY="305dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/helmetStylePreviousButton"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="45dp"
+                android:background="@drawable/button_prev"
+                android:onClick="onClick"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/eyeStyleText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skinColorPreviousButton" />
+
+            <TextView
+                android:id="@+id/helmetStyleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/play_bold"
+                android:text="Helmet"
+                android:textColor="@color/fontColorPanel"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="141dp"
+                tools:layout_editor_absoluteY="322dp" />
+
+            <Button
+                android:id="@+id/helmetStyleNextButton"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="45dp"
+                android:background="@drawable/button_next"
+                android:onClick="onClick"
+                tools:layout_editor_absoluteX="238dp"
+                tools:layout_editor_absoluteY="305dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/shirtStylePreviousButton"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="45dp"
+                android:background="@drawable/button_prev"
+                android:onClick="onClick"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/eyeStyleText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skinColorPreviousButton" />
+
+            <TextView
+                android:id="@+id/shirtStyleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/play_bold"
+                android:text="Shirt Style"
+                android:textColor="@color/fontColorPanel"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="141dp"
+                tools:layout_editor_absoluteY="322dp" />
+
+            <Button
+                android:id="@+id/shirtStyleNextButton"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="45dp"
+                android:background="@drawable/button_next"
+                android:onClick="onClick"
+                tools:layout_editor_absoluteX="238dp"
+                tools:layout_editor_absoluteY="305dp" />
+
+        </TableRow>
+
+
+
     </LinearLayout>
 
     <android.support.design.widget.AppBarLayout

@@ -47,6 +47,7 @@ import com.example.Beemish.HerosJournal.helpers.TagDBHelper;
 import com.example.Beemish.HerosJournal.helpers.TodoDBHelper;
 import com.example.Beemish.HerosJournal.helpers.UserDBHelper;
 import com.example.Beemish.HerosJournal.models.PendingTodoModel;
+import com.example.Beemish.HerosJournal.models.UserModel;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TodoDBHelper todoDBHelper;
     private LinearLayout linearLayout;
     private UserDBHelper userDBHelper;
-    private ImageView avatar;
+    private ImageView userAvatar, avatarWeapon, avatarShirt, avatarHelmet, avatarBackground;
 
     //--------------------Drag and Drop
     private ItemTouchHelper mItemTouchHelper;
@@ -87,8 +88,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void loadAvatar() {
         userDBHelper = new UserDBHelper(this);
-        avatar = (ImageView) findViewById(R.id.avatar);
-        avatar.setImageResource(userDBHelper.fetchUser("root").getUserAvatar());
+
+        avatarWeapon = findViewById(R.id.avatarSword);
+        avatarHelmet = findViewById(R.id.avatarHelment);
+        avatarShirt = findViewById(R.id.avatarShirt);
+        avatarBackground = findViewById(R.id.avatarBackground);
+        userAvatar = (ImageView) findViewById(R.id.avatar);
+
+        UserModel userModel = userDBHelper.fetchUser("root");
+
+        userAvatar.setImageResource(userModel.getUserAvatar());
+        avatarWeapon.setImageResource(userModel.getUserWeaponValue());
+        avatarHelmet.setImageResource(userModel.getUserHelmetValue());
+        avatarShirt.setImageResource(userModel.getUserShirtValue());
+        avatarBackground.setImageResource(userModel.getUserBackgroundValue());
     }
 
     //loading all the pending activities
