@@ -43,6 +43,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.TagDataHolder> {
     public void onBindViewHolder(TagDataHolder holder, int position) {
         final TagsModel tagsModel=tagsModels.get(position);
         holder.tag_title.setText(tagsModel.getTagTitle());
+        holder.tag_level.setText("Level: " + tagsModel.getTagLevel());
         tagDBHelper=new TagDBHelper(context);
         holder.tag_option.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,11 +76,12 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.TagDataHolder> {
     }
 
     public class TagDataHolder extends RecyclerView.ViewHolder{
-        TextView tag_title;
+        TextView tag_title, tag_level;
         ImageView tag_option;
         public TagDataHolder(View itemView) {
             super(itemView);
             tag_title=(TextView)itemView.findViewById(R.id.tag_title);
+            tag_level=(TextView)itemView.findViewById(R.id.tag_level);
             tag_option=(ImageView)itemView.findViewById(R.id.tags_option);
         }
     }

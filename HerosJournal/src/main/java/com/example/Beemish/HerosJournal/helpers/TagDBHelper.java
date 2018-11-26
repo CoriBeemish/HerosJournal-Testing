@@ -26,6 +26,8 @@ public class TagDBHelper{
         SQLiteDatabase sqLiteDatabase=this.databaseHelper.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
         contentValues.put(DatabaseHelper.COL_TAG_TITLE,tagsModel.getTagTitle());
+        contentValues.put(DatabaseHelper.COL_TAG_EXP, tagsModel.getTagExp());
+        contentValues.put(DatabaseHelper.COL_TAG_LEVEL, tagsModel.getTagLevel());
         sqLiteDatabase.insert(DatabaseHelper.TABLE_TAG_NAME,null,contentValues);
         sqLiteDatabase.close();
         return true;
@@ -61,6 +63,7 @@ public class TagDBHelper{
             TagsModel tagsModel=new TagsModel();
             tagsModel.setTagID(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_TAG_ID)));
             tagsModel.setTagTitle(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_TAG_TITLE)));
+            tagsModel.setTagExp(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_TAG_EXP)));
             tagsModels.add(tagsModel);
         }
         cursor.close();
@@ -83,6 +86,8 @@ public class TagDBHelper{
         SQLiteDatabase sqLiteDatabase=this.databaseHelper.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
         contentValues.put(DatabaseHelper.COL_TAG_TITLE,tagsModel.getTagTitle());
+        contentValues.put(DatabaseHelper.COL_TAG_EXP, tagsModel.getTagExp());
+        contentValues.put(DatabaseHelper.COL_TAG_LEVEL, tagsModel.getTagLevel());
         sqLiteDatabase.update(DatabaseHelper.TABLE_TAG_NAME,contentValues,DatabaseHelper.COL_TAG_ID+"=?",
                 new String[]{String.valueOf(tagsModel.getTagID())});
         sqLiteDatabase.close();
@@ -136,5 +141,16 @@ public class TagDBHelper{
             return 0;
         }
 
+    }
+
+    public int fetchTagExp(String tagTitle) {
+        if (tagTitle != null) {
+            SQLiteDatabase sqLiteDatabase=this.databaseHelper.getReadableDatabase();
+            String fetchTitle="SELECT " + DatabaseHelper.COL_TAG_EXP + " FROM " + DatabaseHelper.TABLE_TAG_NAME
+                    + " WHERE " + DatabaseHelper.COL_TAG_TITLE+"=?";
+            Cursor cursor = sqLiteDatabase.rawQuery(fetchTitle, new String[]{tagTitle});
+            cursor.moveToFirst();
+            return cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COL_TAG_EXP));
+        } else return 0;
     }
 }

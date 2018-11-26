@@ -12,6 +12,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_TAG_NAME="tags";
     public static final String COL_TAG_ID="tag_id";
     public static final String COL_TAG_TITLE="tag_title";
+    public static final String COL_TAG_LEVEL="tag_level";
+    public static final String COL_TAG_EXP="tag_exp";
 
     //todos table and columns
     public static final String TABLE_TODO_NAME="todos";
@@ -42,7 +44,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //creating tags table query
     private static final String CREATE_TAGS_TABLE="CREATE TABLE IF NOT EXISTS " + TABLE_TAG_NAME+"("+
             COL_TAG_ID+" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"+
-            COL_TAG_TITLE+" TEXT NOT NULL UNIQUE"+")";
+            COL_TAG_TITLE+" TEXT NOT NULL UNIQUE,"+
+            COL_TAG_LEVEL+" INT NOT NULL,"+
+            COL_TAG_EXP+" INT NOT NULL" +")";
 
     //creating todos table query
     private static final String CREATE_TODOS_TABLE =

@@ -3,21 +3,29 @@ package com.example.Beemish.HerosJournal.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.Beemish.HerosJournal.R;
+import com.example.Beemish.HerosJournal.adapters.TagAdapter;
 import com.example.Beemish.HerosJournal.helpers.SettingsHelper;
 import com.example.Beemish.HerosJournal.helpers.TagDBHelper;
 import com.example.Beemish.HerosJournal.helpers.UserDBHelper;
+import com.example.Beemish.HerosJournal.models.TagsModel;
 import com.example.Beemish.HerosJournal.models.UserModel;
+
+import java.util.ArrayList;
 
 public class SpriteStatsActivity extends AppCompatActivity {
 
     private TagDBHelper tagDBHelper;
     private UserDBHelper userDBHelper;
+    private ArrayList<TagsModel> tagsModels;
+    private TagAdapter tagAdapter;
+    private LinearLayoutManager linearLayoutManager;
 
     private RecyclerView tenTags;
     private ImageView userAvatar, avatarWeapon, avatarShirt, avatarHelmet, avatarBackground;
@@ -34,7 +42,6 @@ public class SpriteStatsActivity extends AppCompatActivity {
         SettingsHelper.applyThemeToolbar((Toolbar)findViewById(R.id.toolbar), this);
 
         tenTags=(RecyclerView)findViewById(R.id.attributeLevelsView);
-        tenTags.setVisibility(View.GONE); //TODO
 
         userDBHelper = new UserDBHelper(this);
 
@@ -51,6 +58,24 @@ public class SpriteStatsActivity extends AppCompatActivity {
         avatarHelmet.setImageResource(userModel.getUserHelmetValue());
         avatarShirt.setImageResource(userModel.getUserShirtValue());
         avatarBackground.setImageResource(userModel.getUserBackgroundValue());
+
+        loadTags();
+    }
+
+    private void loadTags() {
+        tagDBHelper = new TagDBHelper(this);
+        if(tagDBHelper.countTags()==0) {
+            tenTags.setVisibility(View.GONE);
+        } else {
+            tenTags.setVisibility(View.VISIBLE);
+            tagsModels = new ArrayList<>();
+            tagsModels = tagDBHelper.fetchTags();
+            tagAdapter = new TagAdapter(tagsModels, this);
+        }
+        linearLayoutManager = new LinearLayoutManager(this);
+        tenTags.setAdapter(tagAdapter);
+        tenTags.setLayoutManager(linearLayoutManager);
+
     }
 
     public void onClick(View view) {
