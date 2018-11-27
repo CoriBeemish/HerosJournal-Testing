@@ -3,6 +3,7 @@ package com.example.Beemish.HerosJournal.adapters;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,6 +32,7 @@ import com.example.Beemish.HerosJournal.ItemTouchHelperViewHolder;
 import com.example.Beemish.HerosJournal.OnStartDragListener;
 import com.example.Beemish.HerosJournal.R;
 import com.example.Beemish.HerosJournal.activities.CompletedTodos;
+import com.example.Beemish.HerosJournal.activities.GlobalStats;
 import com.example.Beemish.HerosJournal.activities.MainActivity;
 import com.example.Beemish.HerosJournal.helpers.SettingsHelper;
 import com.example.Beemish.HerosJournal.helpers.TagDBHelper;
@@ -42,7 +44,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 
-public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.PendingDataHolder> implements ItemTouchHelperAdapter {
+public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.PendingDataHolder> implements ItemTouchHelperAdapter
+{
     private ArrayList<PendingTodoModel> pendingTodoModels;
     private Context context;
     private String getTagTitleString;
@@ -273,6 +276,8 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if(todoDBHelper.makeCompleted(tagID)){
+
+
                     context.startActivity(new Intent(context, CompletedTodos.class));
                 }
             }

@@ -9,6 +9,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -50,12 +51,15 @@ import com.example.Beemish.HerosJournal.SimpleItemTouchHelperCallback;
 import com.example.Beemish.HerosJournal.adapters.PendingTodoAdapter;
 import com.example.Beemish.HerosJournal.helpers.IntentExtras;
 import com.example.Beemish.HerosJournal.helpers.SettingsHelper;
+import com.example.Beemish.HerosJournal.helpers.StatsDBHelper;
 import com.example.Beemish.HerosJournal.helpers.TagDBHelper;
 import com.example.Beemish.HerosJournal.helpers.TodoDBHelper;
 import com.example.Beemish.HerosJournal.helpers.UserDBHelper;
 import com.example.Beemish.HerosJournal.models.PendingTodoModel;
 import com.example.Beemish.HerosJournal.models.UserModel;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -75,6 +79,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private LinearLayout linearLayout;
     private UserDBHelper userDBHelper;
     private ImageView userAvatar, avatarWeapon, avatarShirt, avatarHelmet, avatarBackground;
+    private TextView healthTextView, manaTextView, expTextView, levelTextView;
+    private StatsDBHelper statsDB;
+    public int health;
+
 
     //--------------------Drag and Drop
     private ItemTouchHelper mItemTouchHelper;
@@ -87,15 +95,108 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SettingsHelper.applyTheme(this); // Applies settings if there has been a choice
         setContentView(R.layout.activity_main);
 
+        statsDB = new StatsDBHelper(this);
+        healthTextView = (TextView)findViewById(R.id.healthStats);
+        manaTextView = (TextView)findViewById(R.id.manaStats);
+        expTextView = (TextView)findViewById(R.id.expStats);
+        levelTextView = (TextView)findViewById(R.id.levelTextView);
+        statsDB.addStat("health",75);
+        statsDB.addStat("mana",60);
+        statsDB.addStat("exp",0);
+        statsDB.addStat("level",1);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar)); // Custom tool bar
         SettingsHelper.applyThemeToolbar((Toolbar)findViewById(R.id.toolbar),this); // Applies settings if there has been a choice
         setTitle(getString(R.string.app_title)); //Loads a different name for the current page on your phone
         showDrawerLayout(); // Custom drawer
         navigationMenuInit();
         loadPendingTodos();
-
         loadAvatar();
+        LoadStats();
+
+
     }
+
+    public void LoadStats()
+    {
+
+        Cursor cursor = statsDB.getStat("health");
+
+        String text = " ";
+        int[] stats = new int[cursor.getCount()];
+        if (cursor.moveToFirst()) {
+
+            int i =0;
+            do {
+                stats[i] = cursor.getInt(cursor.getColumnIndex(StatsDBHelper.COLUMN_VALUE));
+                i++;
+
+            } while (cursor.moveToNext());
+
+
+
+        }
+        //text = String.valueOf(stats[0]);
+        healthTextView.setText(String.valueOf(stats[0])+ "/100");
+
+         cursor = statsDB.getStat("mana");
+
+         text = " ";
+        stats = new int[cursor.getCount()];
+        if (cursor.moveToFirst()) {
+
+            int i =0;
+            do {
+                stats[i] = cursor.getInt(cursor.getColumnIndex(StatsDBHelper.COLUMN_VALUE));
+                i++;
+
+            } while (cursor.moveToNext());
+
+
+
+        }
+
+       manaTextView.setText(String.valueOf(stats[0]) + "/100");
+
+        cursor = statsDB.getStat("exp");
+
+        text = " ";
+        stats = new int[cursor.getCount()];
+        if (cursor.moveToFirst()) {
+
+            int i =0;
+            do {
+                stats[i] = cursor.getInt(cursor.getColumnIndex(StatsDBHelper.COLUMN_VALUE));
+                i++;
+
+            } while (cursor.moveToNext());
+
+
+
+        }
+
+        expTextView.setText(String.valueOf(stats[0]) + "/100");
+
+        cursor = statsDB.getStat("level");
+
+        text = " ";
+        stats = new int[cursor.getCount()];
+        if (cursor.moveToFirst()) {
+
+            int i =0;
+            do {
+                stats[i] = cursor.getInt(cursor.getColumnIndex(StatsDBHelper.COLUMN_VALUE));
+                i++;
+
+            } while (cursor.moveToNext());
+
+
+
+        }
+
+        levelTextView.setText(String.valueOf(stats[0]));
+    }
+
+
 
     private void loadAvatar() {
         userDBHelper = new UserDBHelper(this);

@@ -13,11 +13,13 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.Beemish.HerosJournal.R;
 import com.example.Beemish.HerosJournal.adapters.CompletedTodoAdapter;
+import com.example.Beemish.HerosJournal.adapters.PendingTodoAdapter;
 import com.example.Beemish.HerosJournal.helpers.SettingsHelper;
 import com.example.Beemish.HerosJournal.helpers.TodoDBHelper;
 import com.example.Beemish.HerosJournal.models.CompletedTodoModel;
@@ -32,6 +34,8 @@ public class CompletedTodos extends AppCompatActivity {
     private LinearLayout linearLayout;
     private TodoDBHelper todoDBHelper;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,7 @@ public class CompletedTodos extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         SettingsHelper.applyThemeToolbar((Toolbar)findViewById(R.id.toolbar),this);
         setTitle(getString(R.string.complete_todo_activity_title));
+
         loadCompletedTodos();
     }
 
@@ -62,6 +67,12 @@ public class CompletedTodos extends AppCompatActivity {
         linearLayoutManager=new LinearLayoutManager(this);
         completedTodos.setAdapter(completedTodoAdapter);
         completedTodos.setLayoutManager(linearLayoutManager);
+    }
+
+    public void ClaimReward()
+    {
+       int health = ((GlobalStats)this.getApplication()).GetPlayerHealth();
+        ((GlobalStats)this.getApplication()).SetPlayerHealth(health +15);
     }
 
     @Override

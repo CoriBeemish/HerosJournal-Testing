@@ -30,8 +30,8 @@
                 android:id="@+id/completed_todo_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8sp"
                 android:layout_marginStart="16dp"
+                android:layout_marginLeft="8sp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/play_bold"
                 android:text="@string/completed_todo_demo_title"
@@ -45,21 +45,22 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/completed_todo_title"
                 android:layout_marginStart="16dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/play_bold"
                 android:text="@string/completed_todo_demo_content"
                 android:textColor="@color/fontColorPanel"
-                android:textSize="@dimen/completed_todo_content_text_size"
-                android:layout_marginLeft="10dp" />
+                android:textSize="@dimen/completed_todo_content_text_size" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/completed_todo_content"
-                android:layout_marginBottom="@dimen/pending_todo_info_section_bottom_margin"
-                android:layout_marginLeft="8dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginBottom="@dimen/pending_todo_info_section_bottom_margin"
                 android:orientation="horizontal">
 
                 <TextView
@@ -90,6 +91,8 @@
                     android:text="@string/todo_info_demo_time_from_text"
                     android:textColor="@color/fontColorPanel"
                     android:textSize="@dimen/todo_info_section_text_size" />
+
+
             </LinearLayout>
 
         </RelativeLayout>
