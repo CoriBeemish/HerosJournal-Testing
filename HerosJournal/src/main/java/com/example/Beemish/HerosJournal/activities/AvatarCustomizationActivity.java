@@ -65,6 +65,28 @@ public class AvatarCustomizationActivity extends AppCompatActivity {
         avatarHelmet.setImageResource(userModel.getUserHelmetValue());
         avatarShirt.setImageResource(userModel.getUserShirtValue());
         avatarBackground.setImageResource(userModel.getUserBackgroundValue());
+
+        //set indices to correct positions according to
+        for (int i = 0; i < weaponArray.length; ++i) {
+            if (userModel.getUserWeaponValue() == weaponArray[i]) { weaponIndex = i; };
+        }
+        for (int i = 0; i < helmetArray.length; ++i) {
+            if (userModel.getUserHelmetValue() == helmetArray[i]) { helmetIndex = i; };
+        }
+        for (int i = 0; i < shirtArray.length; ++i) {
+            if (userModel.getUserShirtValue() == shirtArray[i]) { shirtIndex = i; };
+        }
+        for (int i = 0; i < backgroundArray.length; ++i) {
+            if (userModel.getUserBackgroundValue() == backgroundArray[i]) { backgroundIndex = i; };
+        }
+        for (int i = 0; i < drawableArray.length; ++i) {
+            for (int j = 0; j < drawableArray[i].length; ++j) {
+                if (userModel.getUserAvatar() == drawableArray[i][j]) {
+                    columnIndex = i;
+                    rowIndex = j;
+                }
+            }
+        }
     }
 
     private void setAvatarImage() {
