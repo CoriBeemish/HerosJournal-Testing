@@ -7,6 +7,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.view.MotionEventCompat;
@@ -35,6 +36,7 @@ import com.example.Beemish.HerosJournal.activities.CompletedTodos;
 import com.example.Beemish.HerosJournal.activities.GlobalStats;
 import com.example.Beemish.HerosJournal.activities.MainActivity;
 import com.example.Beemish.HerosJournal.helpers.SettingsHelper;
+import com.example.Beemish.HerosJournal.helpers.StatsDBHelper;
 import com.example.Beemish.HerosJournal.helpers.TagDBHelper;
 import com.example.Beemish.HerosJournal.helpers.TodoDBHelper;
 import com.example.Beemish.HerosJournal.models.PendingTodoModel;
@@ -274,10 +276,11 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
         builder.setMessage("Have you completed this task?");
         builder.setPositiveButton("Completed", new DialogInterface.OnClickListener() {
             @Override
+            //ALEX LOOK HERE
             public void onClick(DialogInterface dialogInterface, int i) {
                 if(todoDBHelper.makeCompleted(tagID)){
-
-
+                    StatsDBHelper db = new StatsDBHelper(context);
+                   // db.updateValue(75,17,"health");
                     context.startActivity(new Intent(context, CompletedTodos.class));
                 }
             }

@@ -53,4 +53,14 @@ public class StatsDBHelper extends SQLiteOpenHelper {
         String sql = "SELECT " + COLUMN_VALUE+ " FROM "+TABLE_NAME +" WHERE " +COLUMN_NAME+ " LIKE '"+ name +"'"+";";
         return db.rawQuery(sql,null);
     }
+
+    public boolean updateValue(int currentvalue, int newvalue, String name) {
+        SQLiteDatabase db = getReadableDatabase();
+        // String sql = "UPDATE "+TABLE_NAME + "SET " +COLUMN_VALUE+ " = " + String.valueOf(currentvalue+newvalue) + " WHERE " +COLUMN_NAME+ " = " + name;
+        ContentValues args = new ContentValues();
+        int finalvalue = currentvalue + newvalue;
+        args.put(COLUMN_VALUE,finalvalue);
+        //args.put(COLUMN_NAME, name);
+        return db.update(TABLE_NAME, args, COLUMN_VALUE + "=" + currentvalue, null) > 0;
+    }
 }

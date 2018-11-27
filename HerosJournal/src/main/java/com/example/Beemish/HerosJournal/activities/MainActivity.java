@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         loadAvatar();
         LoadStats();
 
+        //Toast.makeText(this, "STARTED", Toast.LENGTH_LONG).show();
 
     }
 
