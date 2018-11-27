@@ -28,9 +28,9 @@ public class AvatarCustomizationActivity extends AppCompatActivity {
     private int columnIndex = 0;
 
     private int weaponArray[] = {R.drawable.gear_sword_gold, R.drawable.gear_sword_iron, R.drawable.gear_sword_wooden};
-    private int helmetArray[] = {R.drawable.gear_helment_bucket};
+    private int helmetArray[] = {R.drawable.gear_helment_bucket,R.drawable.gear_helment_nicehat,R.drawable.gear_helment_witchhatt };
     private int shirtArray[] = {R.drawable.gear_shirt_blue, R.drawable.gear_shirt_green, R.drawable.gear_shirt_orange};
-    private int backgroundArray[] = {R.drawable.background_sunset};
+    private int backgroundArray[] = {R.drawable.avatar_bg, R.drawable.background_sunset, R.drawable.background_forest};
 
     private int weaponIndex = 0;
     private int helmetIndex = 0;
@@ -140,6 +140,14 @@ public class AvatarCustomizationActivity extends AppCompatActivity {
                 break;
             case R.id.helmetStylePreviousButton:
                 if (helmetIndex == 0) helmetIndex = helmetArray.length - 1; else --helmetIndex;
+                setAvatarImage();
+                break;
+            case R.id.bgStyleNextButton:
+                if (backgroundIndex == backgroundArray.length - 1) backgroundIndex = 0; else ++backgroundIndex;
+                setAvatarImage();
+                break;
+            case R.id.bgStylePreviousButton:
+                if (backgroundIndex == 0) backgroundIndex = backgroundArray.length - 1; else --backgroundIndex;
                 setAvatarImage();
                 break;
         }

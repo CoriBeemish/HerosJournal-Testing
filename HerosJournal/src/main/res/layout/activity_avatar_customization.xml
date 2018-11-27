@@ -10,36 +10,36 @@
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="324dp"
-        android:layout_height="422dp"
+        android:layout_height="433dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginHorizontal="45dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.576"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:layout_constraintVertical_bias="0.772"
-        app:srcCompat="@drawable/customize_bg"
-        android:layout_marginRight="8dp" />
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/customize_bg" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="302dp"
+        android:layout_width="300dp"
+        android:layout_height="330dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginHorizontal="45dp"
         android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customizationBorderImage"
-        app:layout_constraintVertical_bias="0.454">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:layout_constraintVertical_bias="0.836">
 
         <TableRow
             android:layout_width="match_parent"
@@ -49,7 +49,7 @@
                 android:id="@+id/skinColorPreviousButton"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:layout_marginHorizontal="45dp"
+                android:layout_marginHorizontal="20dp"
                 android:background="@drawable/button_prev"
                 android:onClick="onClick"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -91,7 +91,7 @@
                 android:id="@+id/eyeStylePreviousButton"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:layout_marginHorizontal="45dp"
+                android:layout_marginHorizontal="20dp"
                 android:background="@drawable/button_prev"
                 android:onClick="onClick"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -114,7 +114,7 @@
                 android:id="@+id/eyeStyleNextButton"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:layout_marginHorizontal="45dp"
+                android:layout_marginHorizontal="46dp"
                 android:background="@drawable/button_next"
                 android:onClick="onClick"
                 tools:layout_editor_absoluteX="238dp"
@@ -130,7 +130,7 @@
                 android:id="@+id/weaponStylePreviousButton"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:layout_marginHorizontal="45dp"
+                android:layout_marginHorizontal="20dp"
                 android:background="@drawable/button_prev"
                 android:onClick="onClick"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -153,7 +153,7 @@
                 android:id="@+id/weaponStyleNextButton"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:layout_marginHorizontal="45dp"
+                android:layout_marginHorizontal="53dp"
                 android:background="@drawable/button_next"
                 android:onClick="onClick"
                 tools:layout_editor_absoluteX="238dp"
@@ -169,7 +169,7 @@
                 android:id="@+id/helmetStylePreviousButton"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:layout_marginHorizontal="45dp"
+                android:layout_marginHorizontal="20dp"
                 android:background="@drawable/button_prev"
                 android:onClick="onClick"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -182,7 +182,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/play_bold"
-                android:text="Helmet"
+                android:text="Hat Style"
                 android:textColor="@color/fontColorPanel"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="141dp"
@@ -192,7 +192,7 @@
                 android:id="@+id/helmetStyleNextButton"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:layout_marginHorizontal="45dp"
+                android:layout_marginHorizontal="47dp"
                 android:background="@drawable/button_next"
                 android:onClick="onClick"
                 tools:layout_editor_absoluteX="238dp"
@@ -208,7 +208,7 @@
                 android:id="@+id/shirtStylePreviousButton"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:layout_marginHorizontal="45dp"
+                android:layout_marginHorizontal="20dp"
                 android:background="@drawable/button_prev"
                 android:onClick="onClick"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -231,7 +231,7 @@
                 android:id="@+id/shirtStyleNextButton"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:layout_marginHorizontal="45dp"
+                android:layout_marginHorizontal="35dp"
                 android:background="@drawable/button_next"
                 android:onClick="onClick"
                 tools:layout_editor_absoluteX="238dp"
@@ -239,6 +239,44 @@
 
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/bgStylePreviousButton"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/button_prev"
+                android:onClick="onClick"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/eyeStyleText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skinColorPreviousButton" />
+
+            <TextView
+                android:id="@+id/bgStyleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/play_bold"
+                android:text="Background"
+                android:textColor="@color/fontColorPanel"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="141dp"
+                tools:layout_editor_absoluteY="322dp" />
+
+            <Button
+                android:id="@+id/bgStyleNextButton"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginHorizontal="25dp"
+                android:background="@drawable/button_next"
+                android:onClick="onClick"
+                tools:layout_editor_absoluteX="238dp"
+                tools:layout_editor_absoluteY="305dp" />
+
+        </TableRow>
 
 
     </LinearLayout>

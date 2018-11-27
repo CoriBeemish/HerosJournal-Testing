@@ -31,7 +31,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="170dp"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/pending_todos_icon"
@@ -39,7 +39,6 @@
             android:layout_height="69dp"
             android:layout_gravity="center"
             android:layout_margin="@dimen/pending_todo_icon_margin"
-            android:src="@drawable/ic_pending_todos"
             app:srcCompat="@drawable/no_completed_todos3" />
 
         <TextView
