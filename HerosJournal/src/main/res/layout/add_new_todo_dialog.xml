@@ -17,7 +17,7 @@
             android:background="@color/colorPrimary"
             android:padding="@dimen/add_new_todo_dialog_title_padding"
             android:text="@string/add_todo_dialog_title"
-            android:textColor="@android:color/white"
+            android:textColor="@color/paperColor"
             tools:visibility="visible" />
 
         <LinearLayout
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
                 android:text="Priority"
-                android:textColor="@android:color/black"
+                android:textColor="@color/darkBrownFont"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:visibility="invisible"
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
                 android:text="Difficulty"
-                android:textColor="@android:color/black"
+                android:textColor="@color/darkBrownFont"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:visibility="invisible"
