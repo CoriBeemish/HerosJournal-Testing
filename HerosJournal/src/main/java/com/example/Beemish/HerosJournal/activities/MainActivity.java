@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ImageView userAvatar, avatarWeapon, avatarShirt, avatarHelmet, avatarBackground;
     private TextView healthTextView, manaTextView, expTextView, levelTextView;
     private StatsDBHelper statsDB;
-    public int maxHealth=100,maxMana=100,maxExp=100, currentLevel=1;
+    public int maxHealth,maxMana,maxExp, currentLevel;
 
 
     //--------------------Drag and Drop
@@ -104,6 +104,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         statsDB.addStat("mana",60);
         statsDB.addStat("exp",0);
         statsDB.addStat("level",1);
+
+        statsDB.addStat("maxhealth",100);
+        statsDB.addStat("maxmana",100);
+        statsDB.addStat("maxexp",100);
         //statsDB.updateValue(11111,-11111,"exp");
         //statsDB.updateValue(10,-9,"level");
         //statsDB.updateValue(1175,-1100,"health");
@@ -124,10 +128,61 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void LoadStats()
     {
 
-        Cursor cursor = statsDB.getStat("health");
+        Cursor cursor = statsDB.getStat("maxhealth");
 
-        String text = " ";
+
         int[] stats = new int[cursor.getCount()];
+        if (cursor.moveToFirst()) {
+
+            int i =0;
+            do {
+                stats[i] = cursor.getInt(cursor.getColumnIndex(StatsDBHelper.COLUMN_VALUE));
+                i++;
+
+            } while (cursor.moveToNext());
+
+            maxHealth= stats[0];
+
+        }
+
+         cursor = statsDB.getStat("maxmana");
+
+
+         stats = new int[cursor.getCount()];
+        if (cursor.moveToFirst()) {
+
+            int i =0;
+            do {
+                stats[i] = cursor.getInt(cursor.getColumnIndex(StatsDBHelper.COLUMN_VALUE));
+                i++;
+
+            } while (cursor.moveToNext());
+
+            maxMana= stats[0];
+
+        }
+
+         cursor = statsDB.getStat("maxexp");
+
+
+         stats = new int[cursor.getCount()];
+        if (cursor.moveToFirst()) {
+
+            int i =0;
+            do {
+                stats[i] = cursor.getInt(cursor.getColumnIndex(StatsDBHelper.COLUMN_VALUE));
+                i++;
+
+            } while (cursor.moveToNext());
+
+            maxExp= stats[0];
+
+        }
+
+        cursor = statsDB.getStat("health");
+
+
+        stats = new int[cursor.getCount()];
         if (cursor.moveToFirst()) {
 
             int i =0;
@@ -144,12 +199,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
         }
-        //text = String.valueOf(stats[0]);
+
         healthTextView.setText(String.valueOf(stats[0])+ "/" +maxHealth);
 
         cursor = statsDB.getStat("mana");
 
-        text = " ";
+
         stats = new int[cursor.getCount()];
         if (cursor.moveToFirst()) {
 
@@ -170,9 +225,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         manaTextView.setText(String.valueOf(stats[0]) + "/"+maxMana);
 
-        cursor = statsDB.getStat("exp");
+        cursor = statsDB.getStat("level");
 
-        text = " ";
+
         stats = new int[cursor.getCount()];
         if (cursor.moveToFirst()) {
 
@@ -182,22 +237,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 i++;
 
             } while (cursor.moveToNext());
-            if(stats[0] > maxExp)
-            {
-                statsDB.updateValue(stats[0],-(stats[0]-maxExp),3);
-                stats[0] =stats[0]-maxExp;
-                LevelUp();
-            }
+
 
 
         }
+        currentLevel = stats[0];
+        levelTextView.setText(String.valueOf(stats[0]));
 
-        expTextView.setText(String.valueOf(stats[0]) + "/"+maxExp);
 
-        cursor = statsDB.getStat("level");
+        cursor = statsDB.getStat("exp");
 
-        text = " ";
-       stats = new int[cursor.getCount()];
+        //text = " ";
+        stats = new int[cursor.getCount()];
         if (cursor.moveToFirst()) {
 
             int i =0;
@@ -207,21 +258,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             } while (cursor.moveToNext());
 
+            if(stats[0] >= maxExp)
+            {
+                statsDB.updateValue(stats[0],-(stats[0]-maxExp),3);
+                stats[0] =stats[0] - maxExp;
+                LevelUp();
+            }
 
 
         }
 
-        levelTextView.setText(String.valueOf(stats[0]));
+        expTextView.setText(String.valueOf(stats[0]) + "/"+maxExp);
+
+
     }
 
 
     public void LevelUp()
     {
-        maxHealth += 15;
-        maxMana +=12;
-        maxExp += 58;
-        //currentLevel++;
+        statsDB.updateValue(maxHealth,20,5);
+        statsDB.updateValue(maxMana,12,6);
+        statsDB.updateValue(maxExp,75,7);
         statsDB.updateValue(currentLevel,1,4);
+        //currentLevel++;
         LoadStats();
     }
 
