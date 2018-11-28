@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             if(stats[0] >= maxExp)
             {
-                statsDB.updateValue(stats[0],-(stats[0]-maxExp),3);
+                statsDB.updateValue(stats[0],-maxExp,3);
                 stats[0] =stats[0] - maxExp;
                 LevelUp();
             }
