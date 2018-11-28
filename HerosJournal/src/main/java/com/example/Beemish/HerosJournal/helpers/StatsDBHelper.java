@@ -10,7 +10,7 @@ public class StatsDBHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "StatsDatabase";
     public static final String TABLE_NAME = "stats";
     public static final String COLUMN_NAME = "statname";
-    //public static final String COLUMN_ID = "id";
+    public static final String COLUMN_ID = "id";
     public static final String COLUMN_VALUE = "value";
 
     public static final int DB_VERSION = 1;
@@ -23,7 +23,7 @@ public class StatsDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE " + TABLE_NAME+ " (" +COLUMN_VALUE + " INTEGER PRIMARY KEY, " + COLUMN_NAME + " VARCHAR)";
+        String sql = "CREATE TABLE " + TABLE_NAME+ " (" +COLUMN_VALUE + " INTEGER, " +COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_NAME + " VARCHAR)";
         db.execSQL(sql);
     }
 
@@ -54,7 +54,7 @@ public class StatsDBHelper extends SQLiteOpenHelper {
         return db.rawQuery(sql,null);
     }
 
-    public boolean updateValue(int currentvalue, int newvalue, String name) {
+    public boolean updateValue(int currentvalue, int newvalue, int id) {
         SQLiteDatabase db = getReadableDatabase();
         // String sql = "UPDATE "+TABLE_NAME + "SET " +COLUMN_VALUE+ " = " + String.valueOf(currentvalue+newvalue) + " WHERE " +COLUMN_NAME+ " = " + name;
         ContentValues args = new ContentValues();
@@ -62,6 +62,6 @@ public class StatsDBHelper extends SQLiteOpenHelper {
        // if(finalvalue <)
         args.put(COLUMN_VALUE,finalvalue);
         //args.put(COLUMN_NAME, name);
-        return db.update(TABLE_NAME, args, COLUMN_VALUE + "=" + currentvalue, null) > 0;
+        return db.update(TABLE_NAME, args, COLUMN_ID + "=" + id, null) > 0;
     }
 }

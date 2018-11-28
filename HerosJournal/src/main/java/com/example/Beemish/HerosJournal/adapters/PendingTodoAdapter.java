@@ -130,8 +130,8 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                db.updateValue(LoadStats("health"),-9,"health");
-                db.updateValue(LoadStats("mana"),-9,"mana");
+                db.updateValue(LoadStats("health"),-9,1);
+                db.updateValue(LoadStats("mana"),-9,2);
                 if(todoDBHelper.removeTodo(tagID)){
                     Toast.makeText(context, "Activity deleted successfully!", Toast.LENGTH_SHORT).show();
 
@@ -285,9 +285,9 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
             //ALEX LOOK HERE
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                db.updateValue(LoadStats("health"),9,"health");
-                db.updateValue(LoadStats("mana"),7,"mana");
-                db.updateValue(LoadStats("exp"),27,"exp");
+                db.updateValue(LoadStats("health"),9,1);
+                db.updateValue(LoadStats("mana"),7,2);
+                db.updateValue(LoadStats("exp"),27,3);
                 if(todoDBHelper.makeCompleted(tagID)){
                     context.startActivity(new Intent(context, MainActivity.class));
 

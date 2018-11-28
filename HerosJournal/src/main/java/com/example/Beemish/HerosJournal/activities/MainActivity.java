@@ -100,10 +100,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         manaTextView = (TextView)findViewById(R.id.manaStats);
         expTextView = (TextView)findViewById(R.id.expStats);
         levelTextView = (TextView)findViewById(R.id.levelTextView);
-        statsDB.addStat("health",1175);
-        statsDB.addStat("mana",1160);
-        statsDB.addStat("exp",11111);
-        statsDB.addStat("level",10);
+        statsDB.addStat("health",75);
+        statsDB.addStat("mana",60);
+        statsDB.addStat("exp",0);
+        statsDB.addStat("level",1);
         //statsDB.updateValue(11111,-11111,"exp");
         //statsDB.updateValue(10,-9,"level");
         //statsDB.updateValue(1175,-1100,"health");
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             if(stats[0] > maxHealth)
             {
-                //statsDB.updateValue(stats[0],-(stats[0]-maxHealth),"health");
+                statsDB.updateValue(stats[0],-(stats[0]-maxHealth),1);
                 stats[0] = maxHealth;
             }
 
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             } while (cursor.moveToNext());
             if(stats[0] > maxMana)
             {
-                //statsDB.updateValue(stats[0],-(stats[0]-maxMana),"mana");
+                statsDB.updateValue(stats[0],-(stats[0]-maxMana),2);
                 stats[0] = maxMana;
             }
 
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             } while (cursor.moveToNext());
             if(stats[0] > maxExp)
             {
-                //statsDB.updateValue(stats[0],-(stats[0]-maxExp),"exp");
+                statsDB.updateValue(stats[0],-(stats[0]-maxExp),3);
                 stats[0] =stats[0]-maxExp;
                 LevelUp();
             }
@@ -194,24 +194,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         expTextView.setText(String.valueOf(stats[0]) + "/"+maxExp);
 
-        //cursor = statsDB.getStat("level");
+        cursor = statsDB.getStat("level");
 
-        //text = " ";
-       // stats = new int[cursor.getCount()];
-        //if (cursor.moveToFirst()) {
+        text = " ";
+       stats = new int[cursor.getCount()];
+        if (cursor.moveToFirst()) {
 
-            //int i =0;
-           // do {
-               // stats[i] = cursor.getInt(cursor.getColumnIndex(StatsDBHelper.COLUMN_VALUE));
-               // i++;
+            int i =0;
+            do {
+                stats[i] = cursor.getInt(cursor.getColumnIndex(StatsDBHelper.COLUMN_VALUE));
+                i++;
 
-            //} while (cursor.moveToNext());
+            } while (cursor.moveToNext());
 
 
 
-        //}
+        }
 
-        levelTextView.setText(String.valueOf(currentLevel));
+        levelTextView.setText(String.valueOf(stats[0]));
     }
 
 
@@ -220,9 +220,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         maxHealth += 15;
         maxMana +=12;
         maxExp += 58;
-        currentLevel++;
-        //statsDB.updateValue(currentLevel,1,"level");
-        //LoadStats();
+        //currentLevel++;
+        statsDB.updateValue(currentLevel,1,4);
+        LoadStats();
     }
 
 
