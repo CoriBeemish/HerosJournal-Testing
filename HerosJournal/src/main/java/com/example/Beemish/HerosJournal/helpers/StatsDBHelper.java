@@ -59,6 +59,7 @@ public class StatsDBHelper extends SQLiteOpenHelper {
         // String sql = "UPDATE "+TABLE_NAME + "SET " +COLUMN_VALUE+ " = " + String.valueOf(currentvalue+newvalue) + " WHERE " +COLUMN_NAME+ " = " + name;
         ContentValues args = new ContentValues();
         int finalvalue = currentvalue + newvalue;
+       // if(finalvalue <)
         args.put(COLUMN_VALUE,finalvalue);
         //args.put(COLUMN_NAME, name);
         return db.update(TABLE_NAME, args, COLUMN_VALUE + "=" + currentvalue, null) > 0;

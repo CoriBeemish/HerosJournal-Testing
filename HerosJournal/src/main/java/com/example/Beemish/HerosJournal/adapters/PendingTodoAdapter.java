@@ -124,14 +124,19 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
     // Showing confirmation dialog for deleting the todos
     private void showDeleteDialog(final int tagID){
         AlertDialog.Builder builder=new AlertDialog.Builder(context);
+        final StatsDBHelper db = new StatsDBHelper(context);
         builder.setTitle("Delete confirmation");
         builder.setMessage("Do you really want to delete?");
         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                db.updateValue(LoadStats("health"),-9,"health");
+                db.updateValue(LoadStats("mana"),-9,"mana");
                 if(todoDBHelper.removeTodo(tagID)){
                     Toast.makeText(context, "Activity deleted successfully!", Toast.LENGTH_SHORT).show();
+
                     context.startActivity(new Intent(context, MainActivity.class));
+
                 }
             }
         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -273,16 +278,21 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
     private void showCompletedDialog(final int tagID){
         AlertDialog.Builder builder=new AlertDialog.Builder(context);
         builder.setTitle("Completed Dialog");
+        final StatsDBHelper db = new StatsDBHelper(context);
         builder.setMessage("Have you completed this task?");
         builder.setPositiveButton("Completed", new DialogInterface.OnClickListener() {
             @Override
             //ALEX LOOK HERE
             public void onClick(DialogInterface dialogInterface, int i) {
+
+                db.updateValue(LoadStats("health"),9,"health");
+                db.updateValue(LoadStats("mana"),7,"mana");
+                db.updateValue(LoadStats("exp"),27,"exp");
                 if(todoDBHelper.makeCompleted(tagID)){
-                    StatsDBHelper db = new StatsDBHelper(context);
-                   // db.updateValue(75,17,"health");
-                    context.startActivity(new Intent(context, CompletedTodos.class));
+                    context.startActivity(new Intent(context, MainActivity.class));
+
                 }
+
             }
         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
@@ -290,6 +300,26 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
 
             }
         }).create().show();
+    }
+    public int LoadStats(String name) {
+        final StatsDBHelper db = new StatsDBHelper(context);
+        Cursor cursor = db.getStat(name);
+
+        String text = " ";
+        int[] stats = new int[cursor.getCount()];
+        if (cursor.moveToFirst()) {
+
+            int i = 0;
+            do {
+                stats[i] = cursor.getInt(cursor.getColumnIndex(StatsDBHelper.COLUMN_VALUE));
+                i++;
+
+            } while (cursor.moveToNext());
+
+
+        }
+        int value = stats[0];
+        return value;
     }
 
     public class PendingDataHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
