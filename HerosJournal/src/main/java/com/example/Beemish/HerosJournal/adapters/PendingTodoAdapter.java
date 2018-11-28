@@ -288,6 +288,8 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
                 db.updateValue(LoadStats("health"),9,1);
                 db.updateValue(LoadStats("mana"),7,2);
                 db.updateValue(LoadStats("exp"),27,3);
+                Toast.makeText(context, "Gained 27 EXP ,9 HP ,and  7 MP ! ", Toast.LENGTH_LONG).show();
+
                 if(todoDBHelper.makeCompleted(tagID)){
                     context.startActivity(new Intent(context, MainActivity.class));
 
