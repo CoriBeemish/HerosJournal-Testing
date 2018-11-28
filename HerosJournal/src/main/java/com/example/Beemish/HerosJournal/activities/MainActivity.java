@@ -280,7 +280,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         statsDB.updateValue(maxMana,12,6);
         statsDB.updateValue(maxExp,75,7);
         statsDB.updateValue(currentLevel,1,4);
-        //currentLevel++;
+        currentLevel++;
+        Toast.makeText(this, "LEVEL UP! You have reached Level " + currentLevel + "!", Toast.LENGTH_LONG).show();
         LoadStats();
     }
 
