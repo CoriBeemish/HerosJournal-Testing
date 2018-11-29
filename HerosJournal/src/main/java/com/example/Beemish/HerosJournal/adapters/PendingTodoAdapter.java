@@ -40,6 +40,7 @@ import com.example.Beemish.HerosJournal.helpers.StatsDBHelper;
 import com.example.Beemish.HerosJournal.helpers.TagDBHelper;
 import com.example.Beemish.HerosJournal.helpers.TodoDBHelper;
 import com.example.Beemish.HerosJournal.models.PendingTodoModel;
+import com.example.Beemish.HerosJournal.models.TagsModel;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -279,6 +280,7 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
         AlertDialog.Builder builder=new AlertDialog.Builder(context);
         builder.setTitle("Completed Dialog");
         final StatsDBHelper db = new StatsDBHelper(context);
+        tagDBHelper = new TagDBHelper(context);
         builder.setMessage("Have you completed this task?");
         builder.setPositiveButton("Completed", new DialogInterface.OnClickListener() {
             @Override
@@ -290,6 +292,23 @@ public class PendingTodoAdapter extends RecyclerView.Adapter<PendingTodoAdapter.
                 db.updateValue(LoadStats("exp"),27,3);
                 Toast.makeText(context, "Gained 27 EXP ,9 HP ,and  7 MP ! ", Toast.LENGTH_LONG).show();
 
+                ArrayList<TagsModel> tagsList = tagDBHelper.fetchTags();
+                ArrayList<PendingTodoModel> todoModels = todoDBHelper.fetchAllTodos();
+                PendingTodoModel ptm;
+
+                for (int h = 0; h < todoModels.size(); ++h) {
+                    if (todoModels.get(h).getTodoID() == tagID) {
+                        ptm = todoModels.get(h);
+                        System.out.println("****************FOUND THE CORRECT TODO USING TAGID*****************");
+                        for (int k = 0; k < tagsList.size(); ++k) {
+                            if (ptm.getTodoTag().equals(tagsList.get(k).getTagTitle())) {
+                                tagsList.get(k).setTagExp(tagsList.get(k).getTagExp() + 25);
+                                tagDBHelper.saveTag(tagsList.get(k));
+                                System.out.println("*******************THIS SHOULD HAVE WORKED*****************");
+                            }
+                        }
+                    } else {System.out.println("nope. didn't work *****************");};
+                }
                 if(todoDBHelper.makeCompleted(tagID)){
                     context.startActivity(new Intent(context, MainActivity.class));
 
